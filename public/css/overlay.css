@@ -1,0 +1,463 @@
+/*
+ * Overlay layout. Designed for a 1080x1920 OBS Browser Source, responsive
+ * down to 390px wide. Rules for OBS safety:
+ *   - transparent page background, no scrollbars
+ *   - no backdrop-filter, no web fonts
+ *   - animations touch only transform / opacity
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+html {
+  /* 1080px wide -> ~23.8px; 390px -> 12px floor. All sizes below are rem. */
+  font-size: clamp(12px, 2.2vw, 30px);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+p,
+h2,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ---------- shared panel look ---------- */
+.panel,
+.banner,
+.board,
+.combo,
+.ticker {
+  color: var(--text);
+  background: linear-gradient(160deg, var(--panel-bg), var(--panel-bg-2));
+  border: var(--panel-border-width) var(--panel-border-style) var(--panel-border);
+  border-radius: var(--panel-radius);
+  box-shadow: var(--panel-shadow);
+}
+
+/* Ornate corner marks (used heavily by the temple theme, subtly elsewhere). */
+.banner::before,
+.banner::after,
+.board::before,
+.board::after {
+  content: '';
+  position: absolute;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 0.14rem solid var(--ornament);
+  pointer-events: none;
+}
+.banner::before,
+.board::before {
+  top: 0.35rem;
+  left: 0.35rem;
+  border-right: 0;
+  border-bottom: 0;
+  border-top-left-radius: 0.5rem;
+}
+.banner::after,
+.board::after {
+  right: 0.35rem;
+  bottom: 0.35rem;
+  border-left: 0;
+  border-top: 0;
+  border-bottom-right-radius: 0.5rem;
+}
+
+/* ---------- avatar ---------- */
+.avatar {
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent-text);
+  background: var(--accent);
+  border: 0.12rem solid var(--accent-2);
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------- 1. banner ---------- */
+.banner {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: min(88%, 40rem);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.9rem 1.4rem;
+  background: linear-gradient(160deg, var(--banner-bg), var(--banner-bg-2));
+  border-color: var(--banner-border);
+  color: var(--banner-text);
+  transform: translate(-50%, 0);
+  will-change: transform, opacity;
+}
+.banner.is-in {
+  animation: banner-in 420ms cubic-bezier(0.2, 0.9, 0.25, 1.2) both;
+}
+.banner.is-out {
+  animation: banner-out 320ms ease-in both;
+}
+.banner__avatar {
+  width: 3rem;
+  height: 3rem;
+}
+.banner__body {
+  min-width: 0;
+}
+.banner__text {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.banner__sub {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  color: var(--banner-text);
+}
+@keyframes banner-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -1.2rem) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+@keyframes banner-out {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -0.8rem) scale(0.96);
+  }
+}
+
+/* ---------- 2. leaderboard ---------- */
+.board {
+  position: absolute;
+  top: 17%;
+  left: 3%;
+  width: min(42%, 22rem);
+  padding: 0.8rem 0.9rem 0.6rem;
+}
+.board__title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin: 0 0 0.45rem 0.3rem;
+}
+.board__list {
+  list-style: none;
+  position: relative;
+}
+.board__row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.32rem 0.2rem;
+  will-change: transform, opacity;
+}
+.board__row + .board__row {
+  border-top: 0.06rem solid rgba(255, 255, 255, 0.12);
+}
+.board__rank {
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--text);
+  border: 0.1rem solid var(--text-muted);
+}
+.board__row[data-rank='1'] .board__rank {
+  background: var(--rank-1);
+  color: var(--rank-text);
+  border-color: var(--rank-1);
+}
+.board__row[data-rank='2'] .board__rank {
+  background: var(--rank-2);
+  color: var(--rank-text);
+  border-color: var(--rank-2);
+}
+.board__row[data-rank='3'] .board__rank {
+  background: var(--rank-3);
+  color: var(--rank-text);
+  border-color: var(--rank-3);
+}
+.board__row .avatar {
+  width: 1.9rem;
+  height: 1.9rem;
+  font-size: 0.8rem;
+}
+.board__name {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.board__total {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--accent-2);
+  font-variant-numeric: tabular-nums;
+}
+.board__total::before {
+  content: '◆ ';
+  font-size: 0.7em;
+  color: var(--text-muted);
+}
+
+/* ---------- 3. particles ---------- */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+.p--petal {
+  width: 1.1rem;
+  height: 0.8rem;
+  border-radius: 0 100% 0 100%;
+  background: var(--particle-1);
+}
+.p--petal.alt {
+  background: var(--particle-3);
+}
+.p--spark {
+  width: 0.6rem;
+  height: 0.6rem;
+  background: var(--particle-2);
+  border-radius: 0.1rem;
+  box-shadow: 0 0 0.6rem var(--glow);
+}
+.p--spark.alt {
+  width: 0.35rem;
+  height: 0.35rem;
+  background: var(--particle-3);
+}
+.p--icon {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+/* ---------- 4. combo counter ---------- */
+.combo {
+  position: absolute;
+  top: 34%;
+  right: 4%;
+  min-width: 9rem;
+  max-width: 44%;
+  padding: 0.6rem 1.1rem 0.7rem;
+  text-align: center;
+  background: var(--combo-bg);
+  will-change: transform, opacity;
+}
+.combo.is-in {
+  animation: combo-in 260ms ease-out both;
+}
+.combo.is-out {
+  animation: combo-out 400ms ease-in both;
+}
+.combo__gift,
+.combo__user {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--combo-label);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.combo__count {
+  font-family: var(--font-display);
+  font-size: 3.6rem;
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--combo-color);
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}
+.combo__x {
+  font-size: 0.55em;
+  margin-right: 0.08em;
+  vertical-align: 0.3em;
+}
+.combo__count.bump {
+  animation: combo-bump 220ms ease-out;
+}
+@keyframes combo-in {
+  from {
+    opacity: 0;
+    transform: translateX(1.5rem) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes combo-out {
+  to {
+    opacity: 0;
+    transform: translateX(1rem) scale(0.95);
+  }
+}
+@keyframes combo-bump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.22);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---------- 5. ticker ---------- */
+.ticker {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  bottom: 3%;
+  padding: 0.55rem 0.9rem;
+  background: var(--ticker-bg);
+  color: var(--ticker-text);
+  border-width: 0.08rem;
+  overflow: hidden;
+}
+.ticker__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.ticker__item {
+  font-size: 0.85rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: ticker-in 380ms ease-out both;
+}
+.ticker__item b {
+  color: var(--ticker-name);
+  font-weight: 700;
+  margin-right: 0.4em;
+}
+@keyframes ticker-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.8rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- connection hint (only while disconnected) ---------- */
+.conn {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.7rem;
+  border-radius: 0.4rem;
+  color: #ffffff;
+  background: #333333;
+  opacity: 0.85;
+}
+
+/* ---------- narrow canvases (phones / small sources) ---------- */
+@media (max-width: 640px) {
+  .banner {
+    width: 94%;
+    padding: 0.7rem 0.9rem;
+  }
+  .banner__text {
+    font-size: 1.1rem;
+  }
+  .board {
+    width: 62%;
+    top: 19%;
+  }
+  .combo {
+    top: 46%;
+    min-width: 7rem;
+    max-width: 50%;
+  }
+  .combo__count {
+    font-size: 2.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner.is-in,
+  .banner.is-out,
+  .combo.is-in,
+  .combo.is-out,
+  .combo__count.bump,
+  .ticker__item {
+    animation-duration: 1ms;
+  }
+}

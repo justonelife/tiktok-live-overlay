@@ -1,0 +1,471 @@
+{
+  "shots": [
+    {
+      "file": "docs/shots/temple.png",
+      "width": 1080,
+      "height": 1920,
+      "alpha": {
+        "transparentRatio": 0.574
+      },
+      "dom": {
+        "nodes": 150,
+        "liveParticles": 88,
+        "bannerQueue": 1,
+        "bannerDropped": 0,
+        "leaderboard": [
+          "u1006",
+          "u1002",
+          "u1003",
+          "u1005",
+          "u1001"
+        ],
+        "theme": "temple",
+        "htmlBg": "rgba(0, 0, 0, 0)",
+        "bodyBg": "rgba(0, 0, 0, 0)",
+        "overflow": "hidden",
+        "scrolls": false,
+        "bannerVisible": true,
+        "bannerText": "Linh Nguyen sent Rose ×5 · 18th time",
+        "comboVisible": true,
+        "comboN": "12",
+        "tickerItems": 4,
+        "particles": 88,
+        "panelsInsideViewport": true,
+        "bannerBg": "linear-gradient(160deg, rgb(92, 18, 32), rgb(58, 9, 17))",
+        "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", ",
+        "backdrop": false,
+        "width": 1080
+      },
+      "checks": {
+        "themeApplied": true,
+        "transparentBg": true,
+        "noScrollbars": true,
+        "noBackdropFilter": true,
+        "bannerShows18th": true,
+        "comboTicking": true,
+        "leaderboardTop5": true,
+        "tickerHasComments": true,
+        "particlesAlive": true,
+        "domNodesCapped": true,
+        "panelsInsideViewport": true,
+        "pngHasTransparency": true
+      }
+    },
+    {
+      "file": "docs/shots/neon.png",
+      "width": 1080,
+      "height": 1920,
+      "alpha": {
+        "transparentRatio": 0.533
+      },
+      "dom": {
+        "nodes": 150,
+        "liveParticles": 88,
+        "bannerQueue": 1,
+        "bannerDropped": 0,
+        "leaderboard": [
+          "u1006",
+          "u1002",
+          "u1003",
+          "u1005",
+          "u1001"
+        ],
+        "theme": "neon",
+        "htmlBg": "rgba(0, 0, 0, 0)",
+        "bodyBg": "rgba(0, 0, 0, 0)",
+        "overflow": "hidden",
+        "scrolls": false,
+        "bannerVisible": true,
+        "bannerText": "Linh Nguyen sent Rose ×5 · 18th time",
+        "comboVisible": true,
+        "comboN": "12",
+        "tickerItems": 4,
+        "particles": 88,
+        "panelsInsideViewport": true,
+        "bannerBg": "linear-gradient(160deg, rgb(18, 10, 42), rgb(11, 15, 31))",
+        "fontFamily": "system-ui, -apple-system, \"Segoe UI\", Ro",
+        "backdrop": false,
+        "width": 1080
+      },
+      "checks": {
+        "themeApplied": true,
+        "transparentBg": true,
+        "noScrollbars": true,
+        "noBackdropFilter": true,
+        "bannerShows18th": true,
+        "comboTicking": true,
+        "leaderboardTop5": true,
+        "tickerHasComments": true,
+        "particlesAlive": true,
+        "domNodesCapped": true,
+        "panelsInsideViewport": true,
+        "pngHasTransparency": true
+      }
+    },
+    {
+      "file": "docs/shots/tet.png",
+      "width": 1080,
+      "height": 1920,
+      "alpha": {
+        "transparentRatio": 0.599
+      },
+      "dom": {
+        "nodes": 150,
+        "liveParticles": 88,
+        "bannerQueue": 1,
+        "bannerDropped": 0,
+        "leaderboard": [
+          "u1006",
+          "u1002",
+          "u1003",
+          "u1005",
+          "u1001"
+        ],
+        "theme": "tet",
+        "htmlBg": "rgba(0, 0, 0, 0)",
+        "bodyBg": "rgba(0, 0, 0, 0)",
+        "overflow": "hidden",
+        "scrolls": false,
+        "bannerVisible": true,
+        "bannerText": "Linh Nguyen tặng Rose ×5 — lần thứ 18",
+        "comboVisible": true,
+        "comboN": "12",
+        "tickerItems": 4,
+        "particles": 88,
+        "panelsInsideViewport": true,
+        "bannerBg": "linear-gradient(160deg, rgb(184, 18, 28), rgb(122, 10, 17))",
+        "fontFamily": "system-ui, -apple-system, \"Segoe UI\", Ro",
+        "backdrop": false,
+        "width": 1080
+      },
+      "checks": {
+        "themeApplied": true,
+        "transparentBg": true,
+        "noScrollbars": true,
+        "noBackdropFilter": true,
+        "bannerShows18th": true,
+        "comboTicking": true,
+        "leaderboardTop5": true,
+        "tickerHasComments": true,
+        "particlesAlive": true,
+        "domNodesCapped": true,
+        "panelsInsideViewport": true,
+        "pngHasTransparency": true
+      }
+    },
+    {
+      "file": "docs/shots/temple-390.png",
+      "width": 390,
+      "height": 693,
+      "alpha": {
+        "transparentRatio": 0.355
+      },
+      "dom": {
+        "nodes": 150,
+        "liveParticles": 88,
+        "bannerQueue": 1,
+        "bannerDropped": 0,
+        "leaderboard": [
+          "u1006",
+          "u1002",
+          "u1003",
+          "u1005",
+          "u1001"
+        ],
+        "theme": "temple",
+        "htmlBg": "rgba(0, 0, 0, 0)",
+        "bodyBg": "rgba(0, 0, 0, 0)",
+        "overflow": "hidden",
+        "scrolls": false,
+        "bannerVisible": true,
+        "bannerText": "Linh Nguyen sent Rose ×5 · 18th time",
+        "comboVisible": true,
+        "comboN": "12",
+        "tickerItems": 4,
+        "particles": 88,
+        "panelsInsideViewport": true,
+        "bannerBg": "linear-gradient(160deg, rgb(92, 18, 32), rgb(58, 9, 17))",
+        "fontFamily": "\"Iowan Old Style\", \"Palatino Linotype\", ",
+        "backdrop": false,
+        "width": 390
+      },
+      "checks": {
+        "themeApplied": true,
+        "transparentBg": true,
+        "noScrollbars": true,
+        "noBackdropFilter": true,
+        "bannerShows18th": true,
+        "comboTicking": true,
+        "leaderboardTop5": true,
+        "tickerHasComments": true,
+        "particlesAlive": true,
+        "domNodesCapped": true,
+        "panelsInsideViewport": true,
+        "pngHasTransparency": true
+      }
+    }
+  ],
+  "errors": [],
+  "checks": [
+    {
+      "shot": "temple.png",
+      "check": "themeApplied",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "transparentBg",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "noScrollbars",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "noBackdropFilter",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "bannerShows18th",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "comboTicking",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "leaderboardTop5",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "tickerHasComments",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "particlesAlive",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "domNodesCapped",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "panelsInsideViewport",
+      "pass": true
+    },
+    {
+      "shot": "temple.png",
+      "check": "pngHasTransparency",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "themeApplied",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "transparentBg",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "noScrollbars",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "noBackdropFilter",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "bannerShows18th",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "comboTicking",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "leaderboardTop5",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "tickerHasComments",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "particlesAlive",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "domNodesCapped",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "panelsInsideViewport",
+      "pass": true
+    },
+    {
+      "shot": "neon.png",
+      "check": "pngHasTransparency",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "themeApplied",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "transparentBg",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "noScrollbars",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "noBackdropFilter",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "bannerShows18th",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "comboTicking",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "leaderboardTop5",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "tickerHasComments",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "particlesAlive",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "domNodesCapped",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "panelsInsideViewport",
+      "pass": true
+    },
+    {
+      "shot": "tet.png",
+      "check": "pngHasTransparency",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "themeApplied",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "transparentBg",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "noScrollbars",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "noBackdropFilter",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "bannerShows18th",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "comboTicking",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "leaderboardTop5",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "tickerHasComments",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "particlesAlive",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "domNodesCapped",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "panelsInsideViewport",
+      "pass": true
+    },
+    {
+      "shot": "temple-390.png",
+      "check": "pngHasTransparency",
+      "pass": true
+    },
+    {
+      "shot": "panel.png",
+      "check": "statusLoaded",
+      "pass": true
+    },
+    {
+      "shot": "panel.png",
+      "check": "giftListLoaded",
+      "pass": true
+    },
+    {
+      "shot": "panel.png",
+      "check": "configLoaded",
+      "pass": true
+    },
+    {
+      "shot": "panel.png",
+      "check": "liveLogReceives",
+      "pass": true
+    }
+  ]
+}

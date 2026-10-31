@@ -1,0 +1,137 @@
+/*
+ * Theme tokens. Switch with <html data-theme="temple|neon|tet">.
+ * Every theme MUST define every token listed in test/themes.test.js.
+ * Colors used for text/background pairs are opaque hex so contrast can be
+ * verified automatically (>= 4.5:1, WCAG AA).
+ * System font stacks only - no web fonts (OBS-safe, offline).
+ */
+
+:root,
+html[data-theme='temple'] {
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, 'Times New Roman', serif;
+  --font-body: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+
+  --panel-bg: #4a0e17;
+  --panel-bg-2: #2c060c;
+  --panel-border: #d4a537;
+  --panel-border-width: 0.18rem;
+  --panel-border-style: double;
+  --panel-radius: 1.1rem;
+  --panel-shadow: 0 0.4rem 1.6rem rgba(20, 0, 4, 0.55), inset 0 0 0 0.12rem rgba(246, 210, 122, 0.25);
+  --ornament: #f6d27a;
+
+  --text: #fbe7b0;
+  --text-muted: #e3c48e;
+  --accent: #d4a537;
+  --accent-2: #f6d27a;
+  --accent-text: #2c060c;
+
+  --banner-bg: #5c1220;
+  --banner-bg-2: #3a0911;
+  --banner-text: #fff1c9;
+  --banner-border: #e6b84a;
+
+  --combo-bg: #2c060c;
+  --combo-color: #ffd877;
+  --combo-label: #f0d6a3;
+
+  --rank-1: #f2c94c;
+  --rank-2: #d9d9d9;
+  --rank-3: #d7905a;
+  --rank-text: #2c060c;
+
+  --ticker-bg: #2c060c;
+  --ticker-text: #f6e2b8;
+  --ticker-name: #f6d27a;
+
+  --particle-1: #c2183b;
+  --particle-2: #f6d27a;
+  --particle-3: #ff8fa3;
+  --glow: rgba(246, 210, 122, 0.55);
+}
+
+html[data-theme='neon'] {
+  --font-display: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --panel-bg: #0b0f1f;
+  --panel-bg-2: #160a2e;
+  --panel-border: #00e5ff;
+  --panel-border-width: 0.12rem;
+  --panel-border-style: solid;
+  --panel-radius: 0.5rem;
+  --panel-shadow: 0 0 0.9rem rgba(0, 229, 255, 0.55), 0 0 2.4rem rgba(255, 43, 214, 0.25);
+  --ornament: #ff2bd6;
+
+  --text: #e6fbff;
+  --text-muted: #9fd8e6;
+  --accent: #00e5ff;
+  --accent-2: #ff2bd6;
+  --accent-text: #001018;
+
+  --banner-bg: #120a2a;
+  --banner-bg-2: #0b0f1f;
+  --banner-text: #f2fdff;
+  --banner-border: #ff2bd6;
+
+  --combo-bg: #0b0f1f;
+  --combo-color: #5ff6ff;
+  --combo-label: #ffb3f1;
+
+  --rank-1: #00e5ff;
+  --rank-2: #ff6be0;
+  --rank-3: #b4ff4d;
+  --rank-text: #001018;
+
+  --ticker-bg: #0b0f1f;
+  --ticker-text: #d6f7ff;
+  --ticker-name: #ff8fe8;
+
+  --particle-1: #00e5ff;
+  --particle-2: #ff2bd6;
+  --particle-3: #b4ff4d;
+  --glow: rgba(0, 229, 255, 0.65);
+}
+
+html[data-theme='tet'] {
+  --font-display: 'Avenir Next', 'Segoe UI', system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --panel-bg: #a50f19;
+  --panel-bg-2: #7a0a11;
+  --panel-border: #ffd34d;
+  --panel-border-width: 0.16rem;
+  --panel-border-style: solid;
+  --panel-radius: 1.4rem;
+  --panel-shadow: 0 0.4rem 1.4rem rgba(60, 0, 0, 0.5), inset 0 0 0 0.25rem rgba(255, 211, 77, 0.22);
+  --ornament: #ffd34d;
+
+  --text: #fff6dc;
+  --text-muted: #ffe3a6;
+  --accent: #ffd34d;
+  --accent-2: #ffe08a;
+  --accent-text: #5a0006;
+
+  --banner-bg: #b8121c;
+  --banner-bg-2: #7a0a11;
+  --banner-text: #fff8e1;
+  --banner-border: #ffd34d;
+
+  --combo-bg: #7a0a11;
+  --combo-color: #ffe066;
+  --combo-label: #fff0c2;
+
+  --rank-1: #ffd34d;
+  --rank-2: #ffe9b0;
+  --rank-3: #ffab5e;
+  --rank-text: #5a0006;
+
+  --ticker-bg: #7a0a11;
+  --ticker-text: #fff3d1;
+  --ticker-name: #ffd34d;
+
+  --particle-1: #ffd34d;
+  --particle-2: #e8202c;
+  --particle-3: #ffb3c1;
+  --glow: rgba(255, 211, 77, 0.6);
+}

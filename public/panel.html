@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Overlay Control Panel</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/static/css/panel.css" />
+    <script type="module" src="/static/js/panel.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>TikTok LIVE Overlay — Control Panel</h1>
+      <p id="status" class="status">loading…</p>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>TikTok room</h2>
+        <form id="connect-form">
+          <label for="username">Creator username</label>
+          <div class="row">
+            <input id="username" name="username" placeholder="@creator" autocomplete="off" maxlength="25" pattern="@?[A-Za-z0-9._]{2,24}" required />
+            <button type="submit">Connect</button>
+            <button type="button" id="disconnect" class="secondary">Disconnect</button>
+          </div>
+        </form>
+        <p id="tiktok" class="muted"></p>
+      </section>
+
+      <section class="card">
+        <h2>Overlay</h2>
+        <label for="theme">Theme</label>
+        <select id="theme">
+          <option value="temple">temple — gold / maroon</option>
+          <option value="neon">neon — cyber</option>
+          <option value="tet">tet — red / gold festive</option>
+        </select>
+        <label class="check"><input type="checkbox" id="ticker" /> Show comment ticker</label>
+        <label class="check"><input type="checkbox" id="muted" /> Mute gift sounds</label>
+        <label for="template">Banner template <small>({user} {gift} {count} {ordinal} {unit} {combo} {diamonds})</small></label>
+        <div class="row">
+          <input id="template" maxlength="160" />
+          <button type="button" id="save-template">Save</button>
+        </div>
+        <label for="topN">Leaderboard size</label>
+        <input id="topN" type="number" min="1" max="10" />
+      </section>
+
+      <section class="card">
+        <h2>Test &amp; mock</h2>
+        <label for="gift">Test gift</label>
+        <div class="row">
+          <select id="gift"></select>
+          <button type="button" id="send-gift">Send test gift</button>
+        </div>
+        <label for="rate">Mock stream rate (events/sec)</label>
+        <div class="row">
+          <input id="rate" type="number" min="0.2" max="50" step="0.2" value="2" />
+          <button type="button" id="mock-start">Start mock</button>
+          <button type="button" id="mock-stop" class="secondary">Stop</button>
+        </div>
+        <div class="row">
+          <button type="button" id="clear" class="danger">Clear session state</button>
+        </div>
+      </section>
+
+      <section class="card wide">
+        <h2>Live event log</h2>
+        <ol id="log" class="log"></ol>
+      </section>
+    </main>
+    <p id="toast" class="toast" role="status" hidden></p>
+  </body>
+</html>

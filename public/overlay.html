@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-theme="temple">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TikTok LIVE Overlay</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/static/css/themes.css" />
+    <link rel="stylesheet" href="/static/css/overlay.css" />
+    <script type="module" src="/static/js/overlay.js"></script>
+  </head>
+  <body>
+    <main class="stage" aria-live="polite">
+      <div id="particles" class="particles" aria-hidden="true"></div>
+
+      <section id="banner" class="banner" hidden>
+        <div class="banner__avatar avatar"></div>
+        <div class="banner__body">
+          <p class="banner__text"></p>
+          <p class="banner__sub"></p>
+        </div>
+      </section>
+
+      <section id="leaderboard" class="board" hidden>
+        <h2 class="board__title">Top Gifters</h2>
+        <ol class="board__list"></ol>
+      </section>
+
+      <section id="combo" class="combo" hidden>
+        <p class="combo__gift"></p>
+        <p class="combo__count"><span class="combo__x">×</span><span class="combo__n">0</span></p>
+        <p class="combo__user"></p>
+      </section>
+
+      <section id="ticker" class="ticker" hidden>
+        <ul class="ticker__list"></ul>
+      </section>
+
+      <div id="conn" class="conn" hidden>reconnecting…</div>
+    </main>
+  </body>
+</html>
