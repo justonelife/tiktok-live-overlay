@@ -3,8 +3,9 @@
 // written with textContent - never innerHTML.
 
 import { BannerQueue } from './banner-queue.js';
-import { renderTemplate, bannerVars, DEFAULT_TEMPLATE } from './template.js';
+import { renderTemplate, bannerVars, VI_TEMPLATE } from './template.js';
 import { Particles } from './particles.js';
+import { waitingHintVisible, isActivity, isDemo } from './waiting.js';
 
 const THEMES = ['temple', 'neon', 'tet'];
 const TICKER_MAX = 4;
@@ -21,7 +22,7 @@ const locked = {
 };
 
 const state = {
-  config: { theme: 'temple', ticker: true, muted: false, template: DEFAULT_TEMPLATE },
+  config: { theme: 'temple', ticker: true, muted: false, template: VI_TEMPLATE },
   combos: new Map(), // key -> { comboCount, user, gift, lastAt }
   comboKey: null,
   comboHideTimer: null,
@@ -53,7 +54,7 @@ function fillAvatar(el, user) {
   }
 }
 
-const fmt = new Intl.NumberFormat('en-US');
+const fmt = new Intl.NumberFormat('vi-VN');
 
 // ---------- config / theme ----------
 function applyConfig(cfg) {
@@ -96,8 +97,8 @@ const bannerEl = $('#banner');
 const banners = new BannerQueue({
   show(ev) {
     fillAvatar(bannerEl.querySelector('.banner__avatar'), ev.user);
-    bannerEl.querySelector('.banner__text').textContent = renderTemplate(state.config.template || DEFAULT_TEMPLATE, bannerVars(ev));
-    bannerEl.querySelector('.banner__sub').textContent = `◆ ${fmt.format(ev.gift.diamondTotal)} diamonds`;
+    bannerEl.querySelector('.banner__text').textContent = renderTemplate(state.config.template || VI_TEMPLATE, bannerVars(ev));
+    bannerEl.querySelector('.banner__sub').textContent = `◆ ${fmt.format(ev.gift.diamondTotal)} kim cương`;
     bannerEl.hidden = false;
     bannerEl.classList.remove('is-out');
     void bannerEl.offsetWidth; // restart animation
@@ -259,8 +260,27 @@ const handlers = {
   status() {},
 };
 
+// ---------- 6. waiting hint (until the first event; never with ?demo=1) ----------
+const waitingEl = $('#waiting');
+const waiting = { demo: isDemo(location.search), seenActivity: false };
+function updateWaiting(msg) {
+  if (isActivity(msg)) waiting.seenActivity = true;
+  else if (waitingEl.hidden && msg.kind !== 'hello') return; // only 'hello' may reveal it
+  const show = waitingHintVisible(waiting);
+  if (show) {
+    waitingEl.hidden = false;
+    waitingEl.classList.remove('is-gone');
+  } else if (!waitingEl.hidden) {
+    waitingEl.classList.add('is-gone'); // CSS fades it out
+  }
+}
+waitingEl.addEventListener('transitionend', () => {
+  if (waitingEl.classList.contains('is-gone')) waitingEl.hidden = true;
+});
+
 function dispatch(msg) {
   try {
+    updateWaiting(msg);
     const fn = handlers[msg?.kind];
     if (fn) fn(msg.data);
   } catch (err) {
@@ -295,7 +315,7 @@ function connect() {
 }
 
 applyConfig({});
-connect();
+connect(); // the waiting hint is decided on 'hello', so a reload mid-stream never flashes it
 
 // Debug/test hook (used by the screenshot script): expose read-only stats.
 window.__overlay = {
@@ -306,5 +326,6 @@ window.__overlay = {
     bannerDropped: banners.dropped,
     leaderboard: [...boardList.children].map((li) => li.dataset.user),
     theme: document.documentElement.dataset.theme,
+    waitingVisible: !waitingEl.hidden && !waitingEl.classList.contains('is-gone'),
   }),
 };

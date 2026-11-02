@@ -355,19 +355,19 @@ async function main() {
     const panelLoaded = new Promise((r) => cdp.on((m) => m.method === 'Page.loadEventFired' && m.sessionId === sessionId && r()));
     await s('Page.navigate', { url: `${base}/panel` });
     await panelLoaded;
-    for (let i = 0; i < 60 && !(await evaluate("/mode/.test(document.querySelector('#status').textContent)")); i++) await sleep(50);
+    for (let i = 0; i < 60 && !(await evaluate("/cổng/.test(document.querySelector('#status').textContent)")); i++) await sleep(50);
     await sleep(300);
     await api(base, '/api/mock/emit', [{ type: 'comment', user: U.hoa, text: 'panel log check' }, gift(U.bao, G.corgi, 1, { streakable: false })]);
     await sleep(2500);
     const panel = await evaluate(`({
       status: document.querySelector('#status').textContent,
       giftOptions: document.querySelectorAll('#gift option').length,
-      theme: document.querySelector('#theme').value,
+      theme: document.querySelector('input[name="theme"]:checked')?.value,
       logLines: document.querySelectorAll('#log li').length,
     })`);
     await capture('panel.png', DARK);
     const panelChecks = {
-      statusLoaded: /mode/.test(panel.status),
+      statusLoaded: /cổng/.test(panel.status),
       giftListLoaded: panel.giftOptions > 0,
       configLoaded: panel.theme === 'temple',
       liveLogReceives: panel.logLines >= 2,

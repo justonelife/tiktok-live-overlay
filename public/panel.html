@@ -1,75 +1,158 @@
 <!doctype html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Overlay Control Panel</title>
+    <title>Hiệu ứng quà tặng TikTok LIVE — Bảng điều khiển</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="/static/css/panel.css" />
     <script type="module" src="/static/js/panel.js"></script>
   </head>
   <body>
-    <header>
-      <h1>TikTok LIVE Overlay — Control Panel</h1>
-      <p id="status" class="status">loading…</p>
+    <a class="skip" href="#step-1">Bỏ qua, tới Bước 1</a>
+    <header class="top">
+      <div class="top__inner">
+        <h1>🎁 Hiệu ứng quà tặng TikTok LIVE</h1>
+        <p id="status" class="pill" role="status">Đang tải…</p>
+      </div>
     </header>
 
-    <main class="grid">
-      <section class="card">
-        <h2>TikTok room</h2>
-        <form id="connect-form">
-          <label for="username">Creator username</label>
-          <div class="row">
-            <input id="username" name="username" placeholder="@creator" autocomplete="off" maxlength="25" pattern="@?[A-Za-z0-9._]{2,24}" required />
-            <button type="submit">Connect</button>
-            <button type="button" id="disconnect" class="secondary">Disconnect</button>
+    <main class="wrap">
+      <p class="lead">Làm lần lượt 3 bước dưới đây. Giữ cửa sổ đen <b>BAT-DAU</b> luôn mở trong lúc LIVE.</p>
+      <p id="mock-note" class="note" hidden>Đang ở chế độ thử nghiệm: quà tặng là dữ liệu giả để bạn xem trước.</p>
+
+      <!-- STEP 1 -->
+      <section class="step" id="step-1" aria-labelledby="step-1-title">
+        <h2 id="step-1-title" class="step__title"><span class="step__num" aria-hidden="true">1</span>BƯỚC 1 — Nhập tên TikTok của bạn</h2>
+        <form id="connect-form" class="connect" novalidate>
+          <label for="username" class="big-label">Tên TikTok (ví dụ: <b>@tencuaban</b>)</label>
+          <div class="connect__row">
+            <input id="username" name="username" class="big-input" placeholder="@tencuaban" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" inputmode="text" aria-describedby="conn-status" />
+            <button type="submit" id="connect" class="btn btn--primary btn--big">Kết nối</button>
           </div>
         </form>
-        <p id="tiktok" class="muted"></p>
-      </section>
+        <div class="conn-line">
+          <p id="conn-status" class="conn-status" data-tone="idle" role="status" aria-live="polite">Chưa kết nối. Nhập tên TikTok rồi bấm “Kết nối”.</p>
+          <button type="button" id="retry" class="btn btn--secondary" hidden>Thử lại</button>
+          <button type="button" id="disconnect" class="btn btn--ghost" hidden>Ngắt kết nối</button>
+        </div>
 
-      <section class="card">
-        <h2>Overlay</h2>
-        <label for="theme">Theme</label>
-        <select id="theme">
-          <option value="temple">temple — gold / maroon</option>
-          <option value="neon">neon — cyber</option>
-          <option value="tet">tet — red / gold festive</option>
-        </select>
-        <label class="check"><input type="checkbox" id="ticker" /> Show comment ticker</label>
-        <label class="check"><input type="checkbox" id="muted" /> Mute gift sounds</label>
-        <label for="template">Banner template <small>({user} {gift} {count} {ordinal} {unit} {combo} {diamonds})</small></label>
-        <div class="row">
-          <input id="template" maxlength="160" />
-          <button type="button" id="save-template">Save</button>
-        </div>
-        <label for="topN">Leaderboard size</label>
-        <input id="topN" type="number" min="1" max="10" />
-      </section>
-
-      <section class="card">
-        <h2>Test &amp; mock</h2>
-        <label for="gift">Test gift</label>
-        <div class="row">
-          <select id="gift"></select>
-          <button type="button" id="send-gift">Send test gift</button>
-        </div>
-        <label for="rate">Mock stream rate (events/sec)</label>
-        <div class="row">
-          <input id="rate" type="number" min="0.2" max="50" step="0.2" value="2" />
-          <button type="button" id="mock-start">Start mock</button>
-          <button type="button" id="mock-stop" class="secondary">Stop</button>
-        </div>
-        <div class="row">
-          <button type="button" id="clear" class="danger">Clear session state</button>
+        <div class="try">
+          <button type="button" id="test-gift" class="btn btn--gift btn--big">🎁 Bắn thử một món quà</button>
+          <p class="try__hint">Không cần đang LIVE. Bấm để xem hiệu ứng hiện lên trong OBS (hoặc <a id="open-overlay" href="/overlay" target="_blank" rel="noopener">mở trang hiệu ứng</a>).</p>
         </div>
       </section>
 
-      <section class="card wide">
-        <h2>Live event log</h2>
-        <ol id="log" class="log"></ol>
+      <!-- STEP 2 -->
+      <section class="step" id="step-2" aria-labelledby="step-2-title">
+        <h2 id="step-2-title" class="step__title"><span class="step__num" aria-hidden="true">2</span>BƯỚC 2 — Chọn giao diện</h2>
+        <fieldset class="themes">
+          <legend class="sr-only">Giao diện hiệu ứng</legend>
+          <label class="theme-card" data-theme="temple">
+            <input type="radio" name="theme" value="temple" />
+            <span class="thumb thumb--temple" aria-hidden="true">
+              <span class="thumb__banner"><span class="thumb__avatar"></span><span class="thumb__lines"><span></span><span></span></span></span>
+              <span class="thumb__board"><span></span><span></span><span></span></span>
+            </span>
+            <span class="theme-card__name">Chùa</span>
+            <span class="theme-card__desc">Vàng kim – đỏ đô, trang nghiêm</span>
+          </label>
+          <label class="theme-card" data-theme="neon">
+            <input type="radio" name="theme" value="neon" />
+            <span class="thumb thumb--neon" aria-hidden="true">
+              <span class="thumb__banner"><span class="thumb__avatar"></span><span class="thumb__lines"><span></span><span></span></span></span>
+              <span class="thumb__board"><span></span><span></span><span></span></span>
+            </span>
+            <span class="theme-card__name">Neon</span>
+            <span class="theme-card__desc">Xanh – tím rực rỡ, trẻ trung</span>
+          </label>
+          <label class="theme-card" data-theme="tet">
+            <input type="radio" name="theme" value="tet" />
+            <span class="thumb thumb--tet" aria-hidden="true">
+              <span class="thumb__banner"><span class="thumb__avatar"></span><span class="thumb__lines"><span></span><span></span></span></span>
+              <span class="thumb__board"><span></span><span></span><span></span></span>
+            </span>
+            <span class="theme-card__name">Tết</span>
+            <span class="theme-card__desc">Đỏ – vàng ngày Tết, vui tươi</span>
+          </label>
+        </fieldset>
+        <p id="theme-status" class="hint" role="status" aria-live="polite">Bấm vào một giao diện — đổi ngay lập tức.</p>
       </section>
+
+      <!-- STEP 3 -->
+      <section class="step" id="step-3" aria-labelledby="step-3-title">
+        <h2 id="step-3-title" class="step__title"><span class="step__num" aria-hidden="true">3</span>BƯỚC 3 — Dán vào OBS</h2>
+        <label for="overlay-url" class="big-label">Đường dẫn hiệu ứng (dán vào OBS)</label>
+        <div class="copy-row">
+          <input id="overlay-url" class="big-input url-box" readonly value="" />
+          <button type="button" id="copy" class="btn btn--primary btn--big">Sao chép</button>
+        </div>
+        <p id="copy-status" class="hint" role="status" aria-live="polite"></p>
+        <p id="port-note" class="hint"></p>
+
+        <ol class="obs-steps">
+          <li>Mở OBS, ở khung <b>Nguồn</b> (Sources) bấm dấu <b>+</b>.</li>
+          <li>Chọn <b>Trình duyệt</b> (Browser), đặt tên tùy ý, bấm OK.</li>
+          <li>Dán đường dẫn ở trên vào ô <b>URL</b>.</li>
+          <li>Đặt <b>Chiều rộng 1080</b>, <b>Chiều cao 1920</b> rồi bấm OK.</li>
+        </ol>
+        <details class="help">
+          <summary>Mở hướng dẫn OBS chi tiết</summary>
+          <ol class="help__list">
+            <li>Mở phần mềm <b>OBS Studio</b>. Phía dưới màn hình có khung tên <b>Nguồn</b> (tiếng Anh: <i>Sources</i>).</li>
+            <li>Bấm nút <b>+</b> ở dưới khung Nguồn, chọn <b>Trình duyệt</b> (<i>Browser</i>).</li>
+            <li>Đặt tên, ví dụ “Hiệu ứng quà”, rồi bấm <b>OK</b>.</li>
+            <li>Trong cửa sổ mới hiện ra: xóa nội dung ô <b>URL</b> và dán đường dẫn đã sao chép (bấm <kbd>Ctrl</kbd>+<kbd>V</kbd>, trên Mac là <kbd>⌘</kbd>+<kbd>V</kbd>).</li>
+            <li>Ô <b>Chiều rộng</b> (<i>Width</i>) ghi <b>1080</b>, ô <b>Chiều cao</b> (<i>Height</i>) ghi <b>1920</b>. Bấm <b>OK</b>.</li>
+            <li>Quay lại trang này, bấm <b>🎁 Bắn thử một món quà</b> — hiệu ứng sẽ hiện trong OBS.</li>
+          </ol>
+          <p class="hint"><b>Không thấy gì?</b> Kiểm tra cửa sổ đen BAT-DAU còn mở. Trong OBS, bấm chuột phải vào nguồn “Hiệu ứng quà” → <b>Làm mới</b> (<i>Refresh</i>).</p>
+        </details>
+      </section>
+
+      <!-- ADVANCED -->
+      <details class="advanced" id="advanced">
+        <summary>Nâng cao</summary>
+        <div class="adv-grid">
+          <section class="adv-card" aria-labelledby="adv-display">
+            <h3 id="adv-display">Hiển thị</h3>
+            <label class="check"><input type="checkbox" id="ticker" /> Hiện dòng bình luận chạy</label>
+            <label class="check"><input type="checkbox" id="muted" /> Tắt âm thanh khi có quà</label>
+            <label for="template">Mẫu câu thông báo quà <small id="template-vars"></small></label>
+            <div class="row">
+              <input id="template" maxlength="160" />
+              <button type="button" id="save-template" class="btn btn--secondary">Lưu</button>
+            </div>
+            <label for="topN">Số người trong bảng xếp hạng</label>
+            <input id="topN" type="number" min="1" max="10" />
+          </section>
+
+          <section class="adv-card" aria-labelledby="adv-test">
+            <h3 id="adv-test">Thử nghiệm</h3>
+            <label for="gift">Chọn loại quà để thử</label>
+            <div class="row">
+              <select id="gift"></select>
+              <button type="button" id="send-gift" class="btn btn--secondary">Gửi quà thử</button>
+            </div>
+            <label for="rate">Quà giả liên tục (số sự kiện mỗi giây)</label>
+            <div class="row">
+              <input id="rate" type="number" min="0.2" max="50" step="0.2" value="2" />
+              <button type="button" id="mock-start" class="btn btn--secondary">Bật</button>
+              <button type="button" id="mock-stop" class="btn btn--ghost">Dừng</button>
+            </div>
+            <div class="row">
+              <button type="button" id="clear" class="btn btn--danger">Xóa dữ liệu buổi live</button>
+            </div>
+            <p id="stats" class="hint"></p>
+          </section>
+
+          <section class="adv-card adv-card--wide" aria-labelledby="adv-log">
+            <h3 id="adv-log">Nhật ký sự kiện</h3>
+            <ol id="log" class="log"></ol>
+          </section>
+        </div>
+      </details>
     </main>
-    <p id="toast" class="toast" role="status" hidden></p>
+    <p id="toast" class="toast" role="status" aria-live="polite" hidden></p>
   </body>
 </html>

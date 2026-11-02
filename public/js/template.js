@@ -2,6 +2,8 @@
 // Output is plain text: the overlay assigns it via textContent, never innerHTML.
 
 export const DEFAULT_TEMPLATE = '{user} sent {gift} {unit} · {ordinal} time';
+// Default shown to Vietnamese streamers (server config default).
+export const VI_TEMPLATE = '{user} tặng {gift} {unit} — lần thứ {count}';
 
 export const TEMPLATE_VARS = Object.freeze(['user', 'gift', 'count', 'ordinal', 'unit', 'combo', 'diamonds']);
 

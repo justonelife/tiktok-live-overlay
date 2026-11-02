@@ -12,7 +12,9 @@
     "start": "node src/server.js",
     "mock": "MOCK=1 node src/server.js",
     "test": "node --test",
-    "shots": "node scripts/screenshots.js"
+    "launch": "node src/launch.js",
+    "shots": "node scripts/screenshots.js",
+    "shots:beginner": "node scripts/shots-beginner.js"
   },
   "dependencies": {
     "express": "^5.3.0",

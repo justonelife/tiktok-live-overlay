@@ -8,7 +8,9 @@ import { WebSocketServer } from 'ws';
 import { OverlayEngine } from './engine.js';
 import { MockGenerator, GIFT_CATALOG } from './mock.js';
 import { TikTokSource, USERNAME_RE } from './tiktok.js';
-import { defaultConfig, validateConfigPatch } from './config.js';
+import { validateConfigPatch } from './config.js';
+import { loadSettings, saveSettings } from './settings.js';
+import { listenOnFreePort } from './port.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = path.join(ROOT, 'public');
@@ -29,9 +31,10 @@ const CSP = [
 
 const LOOPBACK_HOSTS = new Set(['127.0.0.1', 'localhost', '[::1]']);
 
-function httpError(status, message) {
+function httpError(status, message, errorCode) {
   const err = new Error(message);
   err.status = status;
+  if (errorCode) err.errorCode = errorCode;
   return err;
 }
 
@@ -42,12 +45,13 @@ function httpError(status, message) {
  * @param {number}  [opts.mockRate]   events/second for the mock generator
  * @param {number}  [opts.quietMs]    combo quiet window
  * @param {string}  [opts.host]
+ * @param {string}  [opts.settingsPath] persist config to this JSON file (off when omitted)
  * @param {object}  [opts.logger]
  */
 export function createOverlayServer(opts = {}) {
-  const { mock = false, mockRate = 2, quietMs, host = '127.0.0.1', logger = console } = opts;
+  const { mock = false, mockRate = 2, quietMs, host = '127.0.0.1', settingsPath, logger = console } = opts;
   const startedAt = Date.now();
-  const config = defaultConfig();
+  const config = loadSettings(settingsPath, logger);
   const engine = new OverlayEngine({ quietMs, topN: config.topN, logger });
   const ingest = (raw) => engine.ingest(raw);
   const mockGen = new MockGenerator({ emit: ingest, rate: mockRate });
@@ -66,12 +70,19 @@ export function createOverlayServer(opts = {}) {
     }
   };
   engine.on('message', broadcast);
+  // Has anything flowed since the last clear? Lets a reloaded overlay skip its "waiting" hint.
+  let activity = false;
+  engine.on('message', (m) => {
+    if (m.kind === 'event' || m.kind === 'combo') activity = true;
+    else if (m.kind === 'clear') activity = false;
+  });
   tiktok.onStatus = (status) => broadcast({ kind: 'status', data: status });
 
   const health = () => ({
     ok: true,
     uptimeSec: Math.round((Date.now() - startedAt) / 1000),
     mode: mock ? 'mock' : 'live',
+    port: server.address()?.port ?? null,
     tiktok: tiktok.status,
     mock: { running: mockGen.running, rate: mockGen.rate },
     clients: clients.size,
@@ -158,7 +169,7 @@ export function createOverlayServer(opts = {}) {
     if (giftId !== undefined && typeof giftId !== 'string') throw httpError(400, 'giftId must be a string');
     const gift = giftId ? GIFT_CATALOG.find((g) => g.id === giftId) : GIFT_CATALOG[Math.floor(Math.random() * GIFT_CATALOG.length)];
     if (!gift) throw httpError(400, 'unknown giftId');
-    mockGen.gift({ id: 'test_operator', name: 'Test Viewer', avatarUrl: '' }, gift);
+    mockGen.gift({ id: 'test_operator', name: 'Khán giả thử', avatarUrl: '' }, gift);
     res.json({ ok: true, gift: { id: gift.id, name: gift.name } });
   });
 
@@ -167,6 +178,7 @@ export function createOverlayServer(opts = {}) {
   api.post('/config', (req, res) => {
     const patch = validateConfigPatch(req.body);
     Object.assign(config, patch);
+    saveSettings(settingsPath, config, logger);
     if (patch.topN) engine.stats.topN = patch.topN;
     broadcast({ kind: 'config', data: config });
     if (patch.topN) broadcast({ kind: 'leaderboard', data: engine.stats.leaderboard() });
@@ -181,7 +193,7 @@ export function createOverlayServer(opts = {}) {
   api.post('/connect', async (req, res) => {
     const { username } = body(req);
     if (typeof username !== 'string' || !USERNAME_RE.test(username)) {
-      throw httpError(400, 'username must be 2-24 chars: letters, digits, "." or "_" (optional leading @)');
+      throw httpError(400, 'username must be 2-24 chars: letters, digits, "." or "_" (optional leading @)', 'invalid_username');
     }
     // Do not await the whole handshake past a reasonable time; status is also pushed over WS.
     const status = await Promise.race([
@@ -205,7 +217,7 @@ export function createOverlayServer(opts = {}) {
     const status = err.status ?? err.statusCode ?? 500;
     if (status >= 500) logger.error('[http] error', err);
     const message = status >= 500 ? 'internal error' : err.type === 'entity.parse.failed' ? 'invalid JSON' : err.message;
-    res.status(status).json({ ok: false, error: message });
+    res.status(status).json({ ok: false, error: message, ...(err.errorCode ? { errorCode: err.errorCode } : {}) });
   });
 
   const server = http.createServer(app);
@@ -220,7 +232,7 @@ export function createOverlayServer(opts = {}) {
     ws.on('close', () => clients.delete(ws));
     ws.on('error', () => clients.delete(ws));
     ws.on('message', () => {}); // overlay channel is server -> client only
-    ws.send(JSON.stringify({ kind: 'hello', data: { config, mode: mock ? 'mock' : 'live', tiktok: tiktok.status, ...engine.snapshot() } }));
+    ws.send(JSON.stringify({ kind: 'hello', data: { config, mode: mock ? 'mock' : 'live', tiktok: tiktok.status, activity, ...engine.snapshot() } }));
   });
 
   // Keep-alive so dead OBS sources are reaped.
@@ -252,6 +264,7 @@ export function createOverlayServer(opts = {}) {
       return new Promise((resolve, reject) => {
         server.once('error', reject);
         server.listen(port, host, () => {
+          server.off('error', reject);
           const { port: p } = server.address();
           resolve(`http://${host.includes(':') ? `[${host}]` : host}:${p}`);
         });
@@ -280,7 +293,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   process.on('unhandledRejection', (err) => console.error('[process] unhandled rejection', err));
   process.on('uncaughtException', (err) => console.error('[process] uncaught exception', err));
 
-  const url = await app.listen(port);
+  const { url } = await listenOnFreePort(app, port, { host }); // auto-increment if busy
   console.log(`TikTok LIVE overlay server (${mock ? 'MOCK' : 'live'} mode)`);
   console.log(`  overlay: ${url}/overlay`);
   console.log(`  panel:   ${url}/panel`);

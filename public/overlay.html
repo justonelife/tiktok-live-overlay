@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="temple">
+<html lang="vi" data-theme="temple">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,6 +11,8 @@
   </head>
   <body>
     <main class="stage" aria-live="polite">
+      <p id="waiting" class="waiting" hidden>Đang chờ quà tặng…</p>
+
       <div id="particles" class="particles" aria-hidden="true"></div>
 
       <section id="banner" class="banner" hidden>
@@ -22,7 +24,7 @@
       </section>
 
       <section id="leaderboard" class="board" hidden>
-        <h2 class="board__title">Top Gifters</h2>
+        <h2 class="board__title">Top tặng quà</h2>
         <ol class="board__list"></ol>
       </section>
 
@@ -36,7 +38,7 @@
         <ul class="ticker__list"></ul>
       </section>
 
-      <div id="conn" class="conn" hidden>reconnecting…</div>
+      <div id="conn" class="conn" hidden>đang kết nối lại…</div>
     </main>
   </body>
 </html>

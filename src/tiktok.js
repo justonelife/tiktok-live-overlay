@@ -48,7 +48,8 @@ export class TikTokSource {
     this.logger = logger;
     this.loadLib = loadLib;
     this.conn = null;
-    this.status = { state: 'idle', username: null, roomId: null, error: null, since: Date.now() };
+    // errorCode is a stable machine code the panel maps to a friendly message (see public/js/messages.js).
+    this.status = { state: 'idle', username: null, roomId: null, error: null, errorCode: null, since: Date.now() };
   }
 
   #set(patch) {
@@ -60,12 +61,12 @@ export class TikTokSource {
     if (!USERNAME_RE.test(username ?? '')) throw new TypeError('invalid TikTok username');
     const uniqueId = username.replace(/^@/, '');
     await this.disconnect();
-    this.#set({ state: 'connecting', username: uniqueId, roomId: null, error: null });
+    this.#set({ state: 'connecting', username: uniqueId, roomId: null, error: null, errorCode: null });
     let lib;
     try {
       lib = await this.loadLib();
     } catch (err) {
-      this.#set({ state: 'error', error: `tiktok-live-connector failed to load: ${err.message}` });
+      this.#set({ state: 'error', error: `tiktok-live-connector failed to load: ${err.message}`, errorCode: 'lib_load' });
       return this.status;
     }
     const { TikTokLiveConnection, WebcastEvent, ControlEvent } = lib;
@@ -94,19 +95,19 @@ export class TikTokSource {
       if (this.conn === conn) this.#set({ state: 'disconnected' });
     });
     conn.on(WebcastEvent.STREAM_END, () => {
-      if (this.conn === conn) this.#set({ state: 'ended', error: 'The LIVE stream ended' });
+      if (this.conn === conn) this.#set({ state: 'ended', error: 'The LIVE stream ended', errorCode: 'stream_ended' });
     });
 
     try {
       const state = await conn.connect();
       if (this.conn !== conn) return this.status; // superseded
-      this.#set({ state: 'connected', roomId: state?.roomId ?? null, error: null });
+      this.#set({ state: 'connected', roomId: state?.roomId ?? null, error: null, errorCode: null });
     } catch (err) {
-      const message = describeError(err);
+      const { code, message } = describeError(err);
       this.logger.warn(`[tiktok] connect failed for @${uniqueId}: ${message}`);
       if (this.conn === conn) {
         this.conn = null;
-        this.#set({ state: 'error', error: message });
+        this.#set({ state: 'error', error: message, errorCode: code });
       }
     }
     return this.status;
@@ -125,14 +126,21 @@ export class TikTokSource {
   }
 }
 
-function describeError(err) {
-  const name = err?.constructor?.name ?? 'Error';
+/** Classify a connect failure: stable `code` for the UI + technical `message` for logs. */
+export function describeError(err) {
+  const name = err?.constructor?.name !== 'Error' ? (err?.constructor?.name ?? 'Error') : (err?.name ?? 'Error');
   const msg = err?.message || String(err);
-  if (name === 'UserOfflineError') return 'User is not LIVE right now.';
-  if (name === 'InvalidUniqueIdError') return 'That TikTok username does not exist.';
-  if (/room id/i.test(msg)) {
-    return `Could not find a LIVE room (user offline, wrong username, or TikTok blocked the lookup). Details: ${msg}`.slice(0, 300);
+  const both = `${name} ${msg} ${err?.code ?? ''}`;
+  const out = (code, message) => ({ code, message: message.slice(0, 300) });
+  if (name === 'UserOfflineError') return out('user_offline', 'User is offline (not LIVE right now).');
+  if (name === 'InvalidUniqueIdError') return out('user_not_found', 'That TikTok username does not exist.');
+  if (/rate.?limit/i.test(both)) return out('rate_limited', `Signing service rate-limited the request: ${msg}`);
+  if (/timeout|timed out/i.test(both)) return out('timeout', `${name}: ${msg}`);
+  if (/ENOTFOUND|EAI_AGAIN|ECONNREFUSED|ECONNRESET|ENETUNREACH|fetch failed|socket hang up/i.test(both)) {
+    return out('network', `${name}: ${msg}`);
   }
-  if (/rate.?limit/i.test(name + msg)) return `Signing service rate-limited the request: ${msg}`;
-  return `${name}: ${msg}`.slice(0, 300);
+  if (/room id/i.test(msg)) {
+    return out('room_not_found', `Could not find a LIVE room (user offline, wrong username, or TikTok blocked the lookup). Details: ${msg}`);
+  }
+  return out('unknown', `${name}: ${msg}`);
 }

@@ -1,0 +1,173 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "shot": "panel-beginner.png",
+      "check": "server status loaded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-beginner.png",
+      "check": "3 step headings",
+      "pass": true,
+      "detail": "1BƯỚC 1 — Nhập tên TikTok của bạn | 2BƯỚC 2 — Chọn giao diện | 3BƯỚC 3 — Dán vào OBS"
+    },
+    {
+      "shot": "panel-beginner.png",
+      "check": "OBS URL uses the real port",
+      "pass": true,
+      "detail": "http://127.0.0.1:3000/overlay"
+    },
+    {
+      "shot": "panel-beginner.png",
+      "check": "OBS URL fully visible (not cut off)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-beginner.png",
+      "check": "3 theme cards, one selected",
+      "pass": true,
+      "detail": "selected=temple"
+    },
+    {
+      "shot": "panel-beginner.png",
+      "check": "copy + test-gift buttons visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-beginner.png",
+      "check": "advanced collapsed by default",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-beginner.png",
+      "check": "no raw JSON / template text visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-beginner.png",
+      "check": "no horizontal overflow",
+      "pass": true,
+      "detail": "scrollWidth 1440 / clientWidth 1440"
+    },
+    {
+      "shot": "panel-390.png",
+      "check": "server status loaded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-390.png",
+      "check": "3 step headings",
+      "pass": true,
+      "detail": "1BƯỚC 1 — Nhập tên TikTok của bạn | 2BƯỚC 2 — Chọn giao diện | 3BƯỚC 3 — Dán vào OBS"
+    },
+    {
+      "shot": "panel-390.png",
+      "check": "OBS URL uses the real port",
+      "pass": true,
+      "detail": "http://127.0.0.1:3000/overlay"
+    },
+    {
+      "shot": "panel-390.png",
+      "check": "OBS URL fully visible (not cut off)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-390.png",
+      "check": "3 theme cards, one selected",
+      "pass": true,
+      "detail": "selected=temple"
+    },
+    {
+      "shot": "panel-390.png",
+      "check": "copy + test-gift buttons visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-390.png",
+      "check": "advanced collapsed by default",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-390.png",
+      "check": "no raw JSON / template text visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel-390.png",
+      "check": "no horizontal overflow",
+      "pass": true,
+      "detail": "scrollWidth 390 / clientWidth 390"
+    },
+    {
+      "shot": "panel",
+      "check": "clicking a theme card applies instantly",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel",
+      "check": "test-gift shows a Vietnamese toast",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "panel",
+      "check": "invalid name shows friendly message + Thử lại",
+      "pass": true,
+      "detail": "Tên TikTok chỉ gồm chữ cái không dấu, số, dấu chấm hoặc gạch dưới (2–24 ký tự)."
+    },
+    {
+      "shot": "overlay-waiting.png",
+      "check": "waiting hint visible with no events",
+      "pass": true,
+      "detail": "Đang chờ quà tặng…"
+    },
+    {
+      "shot": "overlay-waiting.png",
+      "check": "hint centered",
+      "pass": true,
+      "detail": "540,960"
+    },
+    {
+      "shot": "overlay-waiting.png",
+      "check": "page background transparent",
+      "pass": true,
+      "detail": "rgba(0, 0, 0, 0) / rgba(0, 0, 0, 0)"
+    },
+    {
+      "shot": "overlay-waiting.png",
+      "check": "no horizontal overflow",
+      "pass": true,
+      "detail": "scrollWidth 1080"
+    },
+    {
+      "shot": "overlay",
+      "check": "hint fades out on first event and is removed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "overlay",
+      "check": "hint does not come back after reload once events flowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "shot": "overlay",
+      "check": "?demo=1 never shows the hint",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 // Operator-controlled overlay config with strict validation.
 
-import { DEFAULT_TEMPLATE } from '../public/js/template.js';
+import { VI_TEMPLATE } from '../public/js/template.js';
 
 export const THEMES = Object.freeze(['temple', 'neon', 'tet']);
 
 export function defaultConfig() {
-  return { theme: 'temple', muted: false, ticker: true, template: DEFAULT_TEMPLATE, topN: 5 };
+  return { theme: 'temple', muted: false, ticker: true, template: VI_TEMPLATE, topN: 5 };
 }
 
 const VALIDATORS = {

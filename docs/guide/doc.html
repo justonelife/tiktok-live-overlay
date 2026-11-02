@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Hướng dẫn Hiệu ứng quà tặng TikTok LIVE</title>
+<style>
+@page { size: A4; margin: 14mm 13mm 16mm 13mm; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-size: 10.5pt; line-height: 1.55; color: #1a1a1a; margin: 0;
+}
+h1 { font-size: 20pt; margin: 0 0 5pt; color: #8b1a2b; letter-spacing: -0.3pt; }
+h2 {
+  font-size: 14pt; margin: 0 0 7pt; color: #8b1a2b;
+  border-bottom: 2.2pt solid #d4a24c; padding-bottom: 4pt;
+}
+h3 { font-size: 11.5pt; margin: 11pt 0 4pt; color: #333; page-break-after: avoid; }
+p { margin: 0 0 7pt; }
+ul, ol { margin: 0 0 8pt; padding-left: 16pt; }
+li { margin-bottom: 3pt; }
+code {
+  font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 9pt;
+  background: #f1eee8; padding: 1pt 3.5pt; border-radius: 3pt; color: #8b1a2b;
+  border: 0.5pt solid #e2ddd4;
+}
+.page { page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+
+img.shot {
+  max-width: 100%; max-height: 82mm; width: auto; height: auto;
+  border: 0.8pt solid #ddd; border-radius: 4pt;
+  margin: 5pt auto 2pt; display: block;
+  page-break-inside: avoid;
+}
+img.tall { max-height: 108mm; }
+img.wide { max-height: 62mm; width: 100%; }
+.caption {
+  font-size: 8pt; color: #777; font-style: italic;
+  margin: 0 0 8pt; text-align: center; page-break-before: avoid;
+}
+.lead { font-size: 11.5pt; color: #444; margin-bottom: 11pt; }
+.box {
+  border-radius: 4pt; padding: 7pt 10pt; margin: 8pt 0; font-size: 10pt;
+  page-break-inside: avoid;
+}
+.tip { background: #eef7ee; border-left: 3.5pt solid #2e7d32; }
+.warn { background: #fff5e6; border-left: 3.5pt solid #e08a00; }
+.danger { background: #fdecec; border-left: 3.5pt solid #c62828; }
+.info { background: #eaf2fb; border-left: 3.5pt solid #1565c0; }
+.box .t { font-weight: 700; display: block; margin-bottom: 2pt; }
+.tip .t { color: #2e7d32; }
+.warn .t { color: #b06d00; }
+.danger .t { color: #c62828; }
+.info .t { color: #1565c0; }
+
+mark { background: #ffe680; padding: 0.5pt 2.5pt; border-radius: 2pt; font-weight: 600; }
+.hl-red { color: #8b1a2b; font-weight: 700; }
+
+table {
+  width: 100%; border-collapse: collapse; margin: 7pt 0; font-size: 9pt;
+  page-break-inside: avoid;
+}
+th {
+  background: #8b1a2b; color: #fff; text-align: left;
+  padding: 4.5pt 6pt; font-weight: 600;
+}
+td { padding: 4pt 6pt; border-bottom: 0.6pt solid #e5e0d8; vertical-align: top; }
+tr:nth-child(even) td { background: #faf8f5; }
+
+.steps { counter-reset: s; list-style: none; padding-left: 0; }
+.steps > li {
+  counter-increment: s; position: relative; padding-left: 26pt;
+  margin-bottom: 8pt; min-height: 19pt; page-break-inside: avoid;
+}
+.steps > li::before {
+  content: counter(s); position: absolute; left: 0; top: 0;
+  width: 18pt; height: 18pt; border-radius: 50%;
+  background: #8b1a2b; color: #fff; font-weight: 700; font-size: 9.5pt;
+  display: flex; align-items: center; justify-content: center;
+}
+.steps > li b { color: #8b1a2b; }
+
+.toc-item {
+  display: flex; justify-content: space-between;
+  padding: 4.5pt 0; border-bottom: 0.5pt dotted #ccc; font-size: 10.5pt;
+}
+.toc-item .n { color: #8b1a2b; font-weight: 700; margin-right: 8pt; }
+.toc-item .p { color: #999; font-size: 9.5pt; }
+.two-col { display: flex; gap: 10pt; }
+.two-col > div { flex: 1; }
+
+.cover {
+  height: 250mm; display: flex; flex-direction: column;
+  justify-content: center; text-align: center; page-break-after: always;
+}
+.cover .badge {
+  display: inline-block; margin: 0 auto 15pt; padding: 6pt 16pt;
+  background: #8b1a2b; color: #fff; border-radius: 30pt;
+  font-size: 9.5pt; letter-spacing: 1.4pt; font-weight: 600;
+}
+.cover h1 { font-size: 32pt; line-height: 1.2; margin-bottom: 10pt; }
+.cover .sub { font-size: 13pt; color: #555; margin-bottom: 26pt; }
+.cover .rule { width: 55pt; height: 3pt; background: #d4a24c; margin: 0 auto 22pt; }
+.cover .meta { font-size: 9.5pt; color: #888; line-height: 1.85; }
+.cover .heart { font-size: 24pt; margin-bottom: 8pt; }
+
+.keep { page-break-inside: avoid; }
+img.shot.wide { max-height: 78mm; width: 100%; }
+</style></head><body>
+<div class="cover">
+  <div class="heart">🎁</div>
+  <div class="badge">HƯỚNG DẪN SỬ DỤNG</div>
+  <h1>Hiệu ứng quà tặng<br>TikTok LIVE</h1>
+  <div class="rule"></div>
+  <div class="sub">Dành cho người <b>không biết gì về máy tính</b><br>Làm theo từng bước — không cần hiểu kỹ thuật</div>
+  <div class="meta">
+    Phiên bản 1.0 &nbsp;·&nbsp; macOS và Windows<br>
+    Thời gian cài đặt lần đầu: khoảng <b>10–15 phút</b><br>
+    Sau đó mỗi lần dùng chỉ cần <b>bấm đúp 1 lần</b>
+  </div>
+</div>
+
+<div class="page">
+  <h1>Bạn sẽ làm được gì sau khi đọc xong?</h1>
+  <p class="lead">Khi bạn lên LIVE trên TikTok, người xem tặng quà — màn hình của bạn sẽ tự hiện hiệu ứng đẹp: tên người tặng, món quà, số lần họ đã tặng, bảng xếp hạng người tặng nhiều nhất, và hoa rơi.</p>
+
+  <img src="img/overlay-temple.png" class="shot tall" alt="Overlay">
+  <p class="caption">Đây là những gì khán giả sẽ thấy trên màn hình LIVE của bạn</p>
+
+  <h3>Bốn thứ hiện lên trên màn hình</h3>
+  <table>
+    <tr><th style="width:32%">Thành phần</th><th>Nó làm gì</th></tr>
+    <tr><td><b>Băng rôn quà tặng</b></td><td>Hiện tên người tặng + món quà + "lần thứ mấy" họ đã tặng bạn</td></tr>
+    <tr><td><b>Bảng xếp hạng</b></td><td>Top 5 người tặng nhiều nhất, tự sắp xếp lại mỗi khi có quà mới</td></tr>
+    <tr><td><b>Hiệu ứng hoa rơi</b></td><td>Cánh hoa bay khi có người tặng quà — quà càng lớn hoa càng nhiều</td></tr>
+    <tr><td><b>Bộ đếm quà liên tiếp</b></td><td>Con số nhảy lên khi ai đó tặng liên tục nhiều món</td></tr>
+  </table>
+
+  <div class="box info">
+    <span class="t">Điều quan trọng nhất cần hiểu</span>
+    Chương trình này <b>không phải</b> app trên điện thoại. Nó chạy trên <b>máy tính</b> (laptop/PC), rồi bạn dùng phần mềm <b>OBS</b> để đưa hình lên buổi LIVE TikTok. Máy tính làm "bộ não", OBS làm "màn hình".
+  </div>
+</div>
+
+<div class="page">
+  <h1>Mục lục</h1>
+  <div class="toc-item"><span><span class="n">1</span>Chuẩn bị — bạn cần những gì</span><span class="p">trang 4</span></div>
+  <div class="toc-item"><span><span class="n">2</span>Cài Node.js (làm một lần duy nhất)</span><span class="p">trang 5</span></div>
+  <div class="toc-item"><span><span class="n">3</span>Tải và mở chương trình</span><span class="p">trang 6</span></div>
+  <div class="toc-item"><span><span class="n">4</span>Chạy chương trình lần đầu</span><span class="p">trang 7</span></div>
+  <div class="toc-item"><span><span class="n">5</span>Bảng điều khiển — 3 bước</span><span class="p">trang 8</span></div>
+  <div class="toc-item"><span><span class="n">6</span>Cài OBS và đưa hiệu ứng lên LIVE</span><span class="p">trang 10</span></div>
+  <div class="toc-item"><span><span class="n">7</span>Thử trước khi lên LIVE thật</span><span class="p">trang 12</span></div>
+  <div class="toc-item"><span><span class="n">8</span>Lên LIVE thật</span><span class="p">trang 13</span></div>
+  <div class="toc-item"><span><span class="n">9</span>Khi có trục trặc — cách sửa</span><span class="p">trang 14</span></div>
+  <div class="toc-item"><span><span class="n">10</span>Những điều cần biết trước khi dùng</span><span class="p">trang 16</span></div>
+
+  <div class="box warn" style="margin-top:18pt">
+    <span class="t">Cách đọc tài liệu này</span>
+    Đừng đọc hết một lượt. Cứ làm theo từng trang: đọc trang nào, làm đúng trang đó, xong rồi mới sang trang tiếp theo. Nếu bị kẹt, mở <b>Chương 9 — Khi có trục trặc</b>.
+  </div>
+
+  <div class="box tip">
+    <span class="t">Ba ký hiệu bạn sẽ gặp</span>
+    <b>⬤ Chữ vàng</b> = thứ bạn cần bấm hoặc gõ &nbsp;·&nbsp;
+    <b>⬤ Ô xanh lá</b> = mẹo giúp dễ hơn &nbsp;·&nbsp;
+    <b>⬤ Ô cam</b> = cẩn thận, dễ sai
+  </div>
+</div>
+<div class="page">
+  <h1>1 · Chuẩn bị — bạn cần những gì</h1>
+  <p class="lead">Trước khi bắt đầu, hãy kiểm tra bạn đã có đủ 4 thứ này. Thiếu cái nào thì bổ sung cái đó trước.</p>
+
+  <table>
+    <tr><th style="width:8%">✓</th><th style="width:26%">Bạn cần</th><th>Vì sao cần</th></tr>
+    <tr><td>☐</td><td><b>Máy tính</b><br>(macOS hoặc Windows)</td><td>Không dùng điện thoại được. Máy cần còn trống khoảng 1GB.</td></tr>
+    <tr><td>☐</td><td><b>Internet ổn định</b></td><td>Để tải phần mềm lần đầu và để kết nối với TikTok.</td></tr>
+    <tr><td>☐</td><td><b>Tài khoản TikTok đã bật LIVE</b></td><td>Chương trình cần biết phòng live của bạn để đọc quà tặng.</td></tr>
+    <tr><td>☐</td><td><b>OBS Studio</b></td><td>Phần mềm miễn phí dùng để đưa hiệu ứng lên buổi LIVE.</td></tr>
+  </table>
+
+  <h3>Vì sao cần OBS? Có thể bỏ qua được không?</h3>
+  <p><b>Không bỏ qua được.</b> TikTok không cho phép chương trình bên ngoài vẽ trực tiếp lên màn hình LIVE. Cách duy nhất là dùng OBS làm "cầu nối": OBS nhận hiệu ứng từ chương trình, rồi OBS phát toàn bộ lên TikTok.</p>
+
+  <div class="box info">
+    <span class="t">Hình dung đơn giản</span>
+    Giống như bạn muốn chiếu phim lên tường: chương trình là <b>đầu đĩa</b>, OBS là <b>máy chiếu</b>, TikTok LIVE là <b>bức tường</b>. Thiếu máy chiếu thì phim không lên tường được.
+  </div>
+
+  <h3>Bạn sẽ cần làm 2 việc "cài đặt" — chỉ một lần duy nhất</h3>
+  <ol class="steps">
+    <li><b>Node.js</b> — một phần mềm nền, miễn phí. Giống như cài Zalo hay Chrome vậy. Cài một lần, không bao giờ phải làm lại.</li>
+    <li><b>OBS Studio</b> — phần mềm phát LIVE, miễn phí. Cũng cài một lần.</li>
+  </ol>
+  <p>Sau khi cài xong 2 thứ này, mỗi lần muốn dùng bạn chỉ cần <b>bấm đúp 1 file duy nhất</b> — không phải cài lại gì nữa.</p>
+
+  <div class="box tip">
+    <span class="t">Mẹo</span>
+    In trang này ra hoặc để điện thoại bên cạnh, vừa làm vừa tick vào ô ☐. Người mới thường bị rối vì quên mình đang ở bước nào.
+  </div>
+</div>
+
+<div class="page">
+  <h1>2 · Cài Node.js (làm một lần)</h1>
+  <p class="lead">Đây là bước "khó" nhất của cả tài liệu. Nhưng thật ra nó chỉ giống như cài một ứng dụng bình thường: tải về → mở → bấm Tiếp tục vài lần → xong.</p>
+
+  <ol class="steps">
+    <li><b>Mở trình duyệt</b> (Chrome, Safari, Cốc Cốc — cái nào cũng được) và gõ địa chỉ:
+      <p style="margin:6pt 0"><code>nodejs.org</code></p>
+    </li>
+    <li><b>Tìm nút màu xanh lá</b> có chữ <span class="hl-red">LTS</span> — nó thường nằm bên trái, ghi "LTS" hoặc "Long Term Support". Bấm vào đó để tải.
+      <div class="box warn" style="margin-top:6pt">
+        <span class="t">Chọn đúng nút</span>
+        Có 2 nút. Bạn chọn nút <b>LTS</b> (ổn định). Đừng chọn nút "Current" (bản thử nghiệm).
+      </div>
+    </li>
+    <li><b>Chờ tải xong</b> (khoảng 30 giây – 2 phút tuỳ mạng). File tải về thường nằm ở thư mục <b>Tải về / Downloads</b>.</li>
+    <li><b>Mở file vừa tải</b> (bấm đúp vào nó) và bấm <b>Tiếp tục / Continue / Next</b> cho đến khi hết. Không cần đổi bất kỳ lựa chọn nào.</li>
+    <li><b>Kiểm tra đã cài xong:</b> không cần làm gì cả — nếu bạn đã bấm hết các bước, nó đã xong.</li>
+  </ol>
+
+  <img src="img/nodejs-org.png" class="shot" alt="Trang nodejs.org">
+  <p class="caption">Trang nodejs.org — bấm nút LTS màu xanh lá (ảnh chụp thật)</p>
+
+  <div class="box danger">
+    <span class="t">Nếu máy hỏi mật khẩu</span>
+    Trên macOS, khi cài có thể máy yêu cầu nhập mật khẩu máy. Đó là mật khẩu bạn dùng để mở khoá máy tính — gõ vào là được. Không phải mật khẩu TikTok.
+  </div>
+</div>
+<div class="page">
+  <h1>3 · Tải và đặt chương trình vào máy</h1>
+  <p class="lead">Chương trình là một thư mục nhỏ. Bạn chỉ cần để nó ở đâu đó dễ tìm, ví dụ ngay trên <b>Desktop</b> hoặc trong thư mục <b>Documents</b>.</p>
+
+  <ol class="steps">
+    <li><b>Tải thư mục chương trình</b> về máy. Nếu bạn nhận được file nén (đuôi <code>.zip</code>), bấm đúp vào nó để giải nén.</li>
+    <li><b>Kéo thư mục vừa giải nén</b> ra Desktop cho dễ tìm. Bạn sẽ thấy bên trong có một file tên <span class="hl-red">BAT-DAU.command</span> (trên macOS) hoặc <span class="hl-red">BAT-DAU.bat</span> (trên Windows).</li>
+    <li><b>Đừng đổi tên, đừng di chuyển</b> file BAT-DAU ra khỏi thư mục đó. Nó phải nằm cùng chỗ với các file khác.</li>
+  </ol>
+
+  <div class="box warn">
+    <span class="t">Đừng làm những điều này</span>
+    ✗ Đừng tách file <code>BAT-DAU.command</code> ra Desktop riêng lẻ<br>
+    ✗ Đừng đổi tên thư mục thành có dấu cách lạ hoặc ký tự đặc biệt<br>
+    ✗ Đừng xoá các thư mục con bên trong (src, public…)
+  </div>
+
+  <h3>Nếu macOS không cho mở file</h3>
+  <p>Lần đầu bấm đúp, macOS có thể hiện thông báo kiểu <i>"không thể mở vì không xác định được nhà phát triển"</i>. Đây là bảo vệ bình thường của Apple với file tải từ Internet. Cách xử lý:</p>
+  <ol class="steps">
+    <li><b>Chuột phải</b> (hoặc giữ phím <code>Control</code> rồi bấm) vào file BAT-DAU.command</li>
+    <li>Chọn <span class="hl-red">Open</span> / <span class="hl-red">Mở</span> trong menu vừa hiện ra</li>
+    <li>Hộp thoại hiện lại → bấm <b>Open</b> lần nữa</li>
+  </ol>
+  <p>Sau lần này, các lần sau chỉ cần bấm đúp bình thường.</p>
+
+  <div class="box tip">
+    <span class="t">Mẹo — nếu vẫn không mở được</span>
+    Mở <b>System Settings</b> → <b>Privacy &amp; Security</b> → cuộn xuống tìm dòng nhắc về BAT-DAU → bấm <b>Open Anyway</b>.
+  </div>
+</div>
+
+<div class="page">
+  <h1>4 · Chạy chương trình lần đầu</h1>
+  <p class="lead">Đây là lần duy nhất bạn phải chờ lâu (khoảng 1–3 phút) vì máy phải tải thêm vài thành phần phụ. Các lần sau mở rất nhanh.</p>
+
+  <ol class="steps">
+    <li><b>Bấm đúp</b> vào file <span class="hl-red">BAT-DAU.command</span></li>
+    <li>Một <b>cửa sổ màu đen</b> (gọi là Terminal) sẽ hiện ra, chữ xanh trắng chạy lên. <b>Đừng hoảng — đây là bình thường.</b></li>
+    <li>Bạn sẽ thấy dòng chữ: <i>"Lần chạy đầu tiên: đang tải các thành phần cần thiết…"</i> → <b>chờ 1–3 phút</b>, đừng tắt cửa sổ.</li>
+    <li>Khi tải xong, chương trình tự mở <b>trình duyệt</b> với <b>Bảng điều khiển</b>. Đồng thời cửa sổ Terminal hiện dòng: <i>"Đang chạy! Đừng đóng cửa sổ này"</i></li>
+  </ol>
+
+  <div class="box danger">
+    <span class="t">Quan trọng nhất trong cả tài liệu</span>
+    <b>Cửa sổ đen (Terminal) phải luôn mở</b> trong suốt buổi LIVE. Đóng nó = tắt chương trình = hiệu ứng ngừng hoạt động. Bạn có thể thu nhỏ nó xuống thanh dưới, nhưng đừng tắt.
+  </div>
+
+  <h3>Bạn sẽ thấy gì trên màn hình</h3>
+  <table>
+    <tr><th style="width:38%">Cửa sổ Terminal</th><th>Trình duyệt (Bảng điều khiển)</th></tr>
+    <tr>
+      <td>Hiện đường dẫn cần dán vào OBS, ví dụ:<br><code>http://127.0.0.1:3000/overlay</code></td>
+      <td>Hiện 3 bước đánh số 1, 2, 3 để bạn làm lần lượt</td>
+    </tr>
+  </table>
+
+  <img src="img/panel-1440.png" class="shot" alt="Bảng điều khiển">
+  <p class="caption">Bảng điều khiển mở ra tự động trong trình duyệt</p>
+
+  <div class="box warn">
+    <span class="t">Ghi lại đường dẫn này</span>
+    Nếu chương trình báo <i>"đang dùng cổng 3100"</i> thay vì 3000 — không sao cả, chỉ là số khác. Nhưng bạn phải dùng đúng số đó khi dán vào OBS. Chép lại con số cho chắc.
+  </div>
+</div>
+<div class="page">
+  <h1>5 · Bảng điều khiển — 3 bước</h1>
+  <p class="lead">Bảng điều khiển có đúng 3 việc phải làm, đánh số 1, 2, 3. Làm từ trên xuống dưới.</p>
+
+  <h2 style="border:none; margin-top:0">Bước 1 — Nhập tên TikTok của bạn</h2>
+  <img src="img/step1.png" class="shot wide" alt="Bước 1">
+  <p class="caption">Bước 1 trong bảng điều khiển</p>
+
+  <ol class="steps">
+    <li>Bấm vào ô trống có chữ mờ <code>@tencuaBan</code></li>
+    <li>Gõ tên TikTok của bạn, <b>có dấu @ phía trước</b>. Ví dụ: <code>@nguyennhut</code>
+      <br><span style="font-size:9.5pt;color:#777">Bạn cũng có thể dán nguyên đường dẫn trang cá nhân TikTok, chương trình tự hiểu.</span>
+    </li>
+    <li>Bấm nút đỏ <span class="hl-red">Kết nối</span></li>
+    <li>Chờ vài giây. Dòng chữ bên dưới sẽ đổi thành:
+      <br><b style="color:#2e7d32">✓ Đã kết nối tới phòng live!</b> → tốt, sang bước 2
+      <br><b style="color:#c62828">✗ Không tìm thấy phòng live</b> → xem Chương 9
+    </li>
+  </ol>
+
+  <div class="box warn">
+    <span class="t">Bắt buộc: bạn phải đang LIVE thì mới kết nối được</span>
+    Chương trình chỉ đọc được quà khi buổi LIVE của bạn đang chạy. Nếu bạn chưa bật LIVE, nó sẽ báo "không tìm thấy phòng live" — đó là đúng, không phải lỗi.
+  </div>
+</div>
+
+<div class="page">
+  <h2 style="border:none; margin-top:0">Bước 2 — Chọn giao diện</h2>
+  <img src="img/step2.png" class="shot wide" alt="Bước 2">
+  <p class="caption">Ba giao diện: Chùa · Neon · Tết — bấm vào để đổi ngay lập tức</p>
+
+  <table>
+    <tr><th style="width:20%">Giao diện</th><th>Phù hợp với</th></tr>
+    <tr><td><b>🏮 Chùa</b></td><td>Màu vàng – đỏ đô, trang nghiêm. Hợp live tâm linh, chúc phúc, cầu an.</td></tr>
+    <tr><td><b>💠 Neon</b></td><td>Xanh – tím rực rỡ. Hợp live game, ca hát, nói chuyện đêm.</td></tr>
+    <tr><td><b>🧧 Tết</b></td><td>Đỏ – vàng ngày Tết, vui tươi. Hợp live bán hàng, chúc Tết.</td></tr>
+  </table>
+
+  <div class="box tip">
+    <span class="t">Không cần chọn đúng ngay</span>
+    Đổi giao diện bất cứ lúc nào, kể cả đang LIVE. Nó áp dụng ngay lập tức, không cần khởi động lại. Cứ thử cả ba rồi chọn cái bạn thích.
+  </div>
+</div>
+
+<div class="page">
+  <h2 style="border:none; margin-top:0">Bước 3 — Dán đường dẫn vào OBS</h2>
+  <img src="img/step3.png" class="shot wide" alt="Bước 3">
+  <p class="caption">Bước 3 — nút "Sao chép" giúp bạn không phải gõ tay</p>
+
+  <ol class="steps">
+    <li>Bấm nút đỏ <span class="hl-red">Sao chép</span> — đường dẫn đã được copy sẵn</li>
+    <li>Đừng đóng tab này. Chuyển sang OBS (Chương 6) và dán vào</li>
+  </ol>
+
+  <div class="box info">
+    <span class="t">Đường dẫn đó là gì?</span>
+    Nó là "địa chỉ" để OBS tìm thấy hiệu ứng trên máy bạn. Dạng <code>http://127.0.0.1:3000/overlay</code> — nhìn đáng sợ nhưng bạn chỉ cần <b>sao chép và dán</b>, không phải hiểu nó.
+  </div>
+</div>
+<div class="page">
+  <h1>6 · Cài OBS và đưa hiệu ứng lên LIVE</h1>
+  <p class="lead">Nếu bạn chưa có OBS: vào <code>obsproject.com</code> → tải bản cho macOS hoặc Windows → mở file → bấm Next vài lần. Miễn phí, không cần đăng ký.</p>
+
+  <img src="img/obs-download.png" class="shot" alt="Trang tải OBS">
+  <p class="caption">Trang tải OBS — chọn đúng hệ điều hành của bạn (ảnh chụp thật)</p>
+
+  <h3>Thêm hiệu ứng vào OBS — 5 bước</h3>
+  <ol class="steps">
+    <li>Mở OBS. Ở góc dưới trái có khung tên <span class="hl-red">Nguồn / Sources</span> (nếu không thấy, bấm dấu <b>+</b> ở dưới khung đó).</li>
+    <li>Bấm dấu <span class="hl-red">+</span> màu đen ở góc dưới khung Nguồn.</li>
+    <li>Một menu hiện ra → chọn <span class="hl-red">Trình duyệt / Browser</span>.</li>
+    <li>Hộp thoại mới hiện ra:
+      <table style="margin-top:6pt">
+        <tr><th style="width:32%">Ô cần điền</th><th>Điền gì</th></tr>
+        <tr><td>Tên / Name</td><td>Gõ gì cũng được, ví dụ <code>Hieu ung qua</code></td></tr>
+        <tr><td><b>URL</b></td><td><b>Dán đường dẫn</b> đã sao chép ở Bước 3 (bấm <code>Cmd+V</code> trên Mac hoặc <code>Ctrl+V</code> trên Windows)</td></tr>
+        <tr><td>Chiều rộng / Width</td><td><b>1080</b></td></tr>
+        <tr><td>Chiều cao / Height</td><td><b>1920</b></td></tr>
+      </table>
+    </li>
+    <li>Bấm <b>OK</b>. Xong — hiệu ứng đã nằm trong OBS.</li>
+  </ol>
+
+  <div class="box warn">
+    <span class="t">Nếu hiệu ứng hiện ra quá to hoặc lệch</span>
+    Trong OBS, bấm vào khung hiệu ứng rồi kéo các điểm ở 4 góc để thu nhỏ hoặc di chuyển. Giữ phím <code>Shift</code> khi kéo để không bị méo hình.
+  </div>
+
+  <div class="keep">
+  <h3>Hai cài đặt quan trọng phải kiểm tra</h3>
+  <p>Bấm đúp vào dòng <b>Hieu ung qua</b> trong khung Nguồn để mở lại hộp thoại, rồi:</p>
+  <table>
+    <tr><th style="width:55%">Cài đặt</th><th>Phải để</th></tr>
+    <tr><td>Tắt nguồn khi không nhìn thấy<br><i>(Shutdown source when not visible)</i></td><td><b>TẮT</b> (không tick)</td></tr>
+    <tr><td>Làm mới trình duyệt khi cảnh hoạt động<br><i>(Refresh browser when scene becomes active)</i></td><td><b>TẮT</b> (không tick)</td></tr>
+  </table>
+  </div>
+  <div class="box danger">
+    <span class="t">Vì sao phải tắt 2 cái này</span>
+    Nếu để bật, OBS sẽ <b>khởi động lại</b> hiệu ứng mỗi lần bạn đổi cảnh — và <b>bảng xếp hạng sẽ bị xoá sạch</b>. Người tặng quà nhiều sẽ thấy mình biến mất khỏi bảng. Tắt đi là an toàn nhất.
+  </div>
+
+  <div class="box tip">
+    <span class="t">Muốn chắc chắn hiệu ứng chạy đúng?</span>
+    Trong khung Nguồn, chuột phải vào <b>Hieu ung qua</b> → chọn <b>Interact / Tương tác</b>. Một cửa sổ hiện ra cho bạn thấy đúng những gì OBS đang nhận. Nếu thấy chữ "Đang chờ quà tặng…" là đã kết nối đúng.
+  </div>
+</div>
+
+<div class="page">
+  <h1>7 · Thử trước khi lên LIVE thật</h1>
+  <p class="lead">Đừng bao giờ lên LIVE lần đầu mà chưa thử. Bước này giúp bạn biết chắc mọi thứ chạy đúng — mà không cần ai tặng quà thật.</p>
+
+  <h3>Cách thử — không cần đang LIVE</h3>
+  <ol class="steps">
+    <li>Trong bảng điều khiển, tìm nút xanh lá <span class="hl-red">Bắn thử một món quà</span> (nằm ngay dưới Bước 1).</li>
+    <li>Bấm vào nút đó vài lần.</li>
+    <li>Nhìn sang OBS — bạn sẽ thấy băng rôn quà tặng hiện lên, hoa rơi, và bảng xếp hạng bắt đầu có tên.</li>
+  </ol>
+
+  <img src="img/overlay-waiting.png" class="shot tall" alt="Màn hình chờ">
+  <p class="caption">Trước khi có quà: hiệu ứng hiện dòng nhắc nhẹ "Đang chờ quà tặng…"</p>
+
+  <h3>Checklist trước khi lên LIVE</h3>
+  <table>
+    <tr><th style="width:8%">✓</th><th>Việc cần kiểm</th></tr>
+    <tr><td>☐</td><td>Cửa sổ Terminal vẫn đang mở</td></tr>
+    <tr><td>☐</td><td>Bảng điều khiển báo "Đã kết nối tới phòng live"</td></tr>
+    <tr><td>☐</td><td>Bấm "Bắn thử một món quà" → thấy hiệu ứng trong OBS</td></tr>
+    <tr><td>☐</td><td>Bảng xếp hạng hiện đúng tên và số quà</td></tr>
+    <tr><td>☐</td><td>Đã chọn giao diện ưng ý</td></tr>
+  </table>
+
+  <div class="box tip">
+    <span class="t">Đã thử xong?</span>
+    Bấm nút <b>Xoá / Clear</b> trong phần <b>Nâng cao</b> để dọn sạch dữ liệu thử, rồi mới lên LIVE thật. Nếu không, bảng xếp hạng sẽ bắt đầu với mấy cái tên giả.
+  </div>
+</div>
+<div class="page">
+  <h1>8 · Lên LIVE thật</h1>
+  <p class="lead">Mọi thứ đã sẵn sàng. Đây là thứ tự đúng khi bắt đầu buổi LIVE.</p>
+
+  <ol class="steps">
+    <li><b>Mở Terminal trước</b> — bấm đúp BAT-DAU.command, chờ bảng điều khiển tự mở.</li>
+    <li><b>Mở OBS</b> — kiểm tra khung hiệu ứng vẫn còn trong danh sách Nguồn.</li>
+    <li><b>Bật LIVE trên TikTok</b> (trên điện thoại hoặc trên máy, bằng OBS hoặc app TikTok — tuỳ cách bạn vẫn làm).</li>
+    <li><b>Quay lại bảng điều khiển</b> → nhập tên TikTok → bấm <b>Kết nối</b> → chờ dòng "Đã kết nối tới phòng live!".</li>
+    <li><b>Bắt đầu nói chuyện với khán giả.</b> Khi có người tặng quà, hiệu ứng tự chạy.</li>
+  </ol>
+
+  <div class="box warn">
+    <span class="t">Thứ tự này quan trọng</span>
+    Phải <b>bật LIVE trước</b> rồi mới bấm Kết nối. Làm ngược lại sẽ báo "không tìm thấy phòng live" — chỉ cần bật LIVE rồi bấm Kết nối lại, không phải khởi động lại chương trình.
+  </div>
+
+  <h3>Khi buổi LIVE kết thúc</h3>
+  <ol class="steps">
+    <li>Ngừng phát LIVE trên TikTok như bình thường</li>
+    <li>Đóng OBS</li>
+    <li>Đóng cửa sổ Terminal (bấm dấu ✕, hoặc <code>Ctrl+C</code>)</li>
+  </ol>
+  <p>Xong. Dữ liệu cũ sẽ tự mất khi mở lại — mỗi buổi LIVE bắt đầu với bảng xếp hạng trắng.</p>
+
+  <h3>Sau này mỗi lần dùng</h3>
+  <div class="box tip">
+    <span class="t">Chỉ còn 2 bước</span>
+    ① Bấm đúp <b>BAT-DAU.command</b> &nbsp;→&nbsp; ② Nhập tên TikTok, bấm Kết nối.
+    <br>Không phải cài lại gì. Không phải cấu hình lại OBS (OBS nhớ sẵn).
+  </div>
+
+  <div class="box info">
+    <span class="t">Đổi giao diện giữa buổi LIVE</span>
+    Mở bảng điều khiển, bấm Bước 2, chọn giao diện khác. OBS tự cập nhật trong khoảng 1–2 giây. Không cần khởi động lại gì cả.
+  </div>
+</div>
+
+<div class="page">
+  <h1>9 · Khi có trục trặc — cách sửa</h1>
+  <p class="lead">Đây là những lỗi người mới gặp nhiều nhất. Tìm đúng triệu chứng của bạn rồi làm theo cách sửa.</p>
+
+  <h3>Chương trình không mở được</h3>
+  <table>
+    <tr><th style="width:42%">Triệu chứng</th><th>Cách sửa</th></tr>
+    <tr>
+      <td>Bấm đúp file mà không có gì xảy ra</td>
+      <td>Chuột phải vào file → chọn <b>Open</b>. Nếu vẫn vậy: System Settings → Privacy &amp; Security → bấm <b>Open Anyway</b>.</td>
+    </tr>
+    <tr>
+      <td>Cửa sổ đen hiện ra rồi tắt ngay</td>
+      <td>Node.js chưa cài hoặc cài chưa xong. Làm lại Chương 2. Chương trình sẽ tự mở trang nodejs.org cho bạn.</td>
+    </tr>
+    <tr>
+      <td>Báo <i>"KHÔNG TẢI ĐƯỢC THÀNH PHẦN CẦN THIẾT"</i></td>
+      <td>Mất mạng giữa lúc cài. Kiểm tra wifi, rồi bấm đúp lại file. Nó sẽ tải tiếp, không làm lại từ đầu.</td>
+    </tr>
+  </table>
+
+  <h3>Không kết nối được với TikTok</h3>
+  <table>
+    <tr><th style="width:42%">Triệu chứng</th><th>Cách sửa</th></tr>
+    <tr>
+      <td>"Không tìm thấy phòng live"</td>
+      <td>① Bạn <b>chưa bật LIVE</b> — đây là nguyên nhân số 1. ② Sai tên TikTok — kiểm tra lại có đúng <code>@</code> và không có dấu cách. ③ Bấm <b>Thử lại</b>.</td>
+    </tr>
+    <tr>
+      <td>"Không kết nối được, thử lại sau"</td>
+      <td>TikTok đang chặn tạm thời. Chờ 2–3 phút rồi bấm Thử lại. Nếu liên tục bị, tắt wifi bật lại.</td>
+    </tr>
+    <tr>
+      <td>Đã kết nối nhưng tặng quà không thấy hiện</td>
+      <td>Mở OBS → chuột phải khung hiệu ứng → <b>Interact</b>. Nếu thấy "Đang chờ quà tặng…" mà không nhảy số, bấm <b>Test gift</b> trong phần Nâng cao để kiểm tra.</td>
+    </tr>
+  </table>
+</div>
+
+<div class="page">
+  <h3>Hiệu ứng không hiện trong OBS</h3>
+  <table>
+    <tr><th style="width:42%">Triệu chứng</th><th>Cách sửa</th></tr>
+    <tr>
+      <td>Khung đen xì, không có gì</td>
+      <td>Đường dẫn trong OBS sai. Quay lại bảng điều khiển, bấm <b>Sao chép</b> lần nữa (số cổng có thể đã đổi), rồi sửa lại URL trong OBS.</td>
+    </tr>
+    <tr>
+      <td>Chương trình đã tắt nhưng OBS vẫn hiện khung cũ</td>
+      <td>Bình thường. Mở lại BAT-DAU.command là nó tự kết nối lại.</td>
+    </tr>
+    <tr>
+      <td>Hiệu ứng bị xoá sạch sau khi đổi cảnh</td>
+      <td>Bạn chưa tắt "Shutdown source when not visible". Xem lại Chương 6, mục "Hai cài đặt quan trọng".</td>
+    </tr>
+    <tr>
+      <td>Chữ quá nhỏ khi xem trên điện thoại</td>
+      <td>Trong OBS, kéo khung hiệu ứng to ra (giữ <code>Shift</code> khi kéo). Hoặc chọn giao diện có chữ đậm hơn.</td>
+    </tr>
+  </table>
+
+  <h3>Vẫn không được?</h3>
+  <div class="box info">
+    <span class="t">Cách tự kiểm tra nhanh</span>
+    Mở trình duyệt, gõ đúng đường dẫn overlay (ví dụ <code>http://127.0.0.1:3000/overlay</code>) rồi Enter.
+    <br>• Nếu thấy trang trắng có bảng xếp hạng → chương trình OK, lỗi nằm ở OBS
+    <br>• Nếu báo "không kết nối được" → chương trình chưa chạy, mở lại BAT-DAU.command
+  </div>
+
+  <div class="box tip">
+    <span class="t">Mẹo cuối</span>
+    Trước buổi LIVE quan trọng, hãy chạy thử toàn bộ quy trình 15 phút trước giờ bắt đầu. Đừng bao giờ cài đặt lần đầu ngay trước khi lên sóng.
+  </div>
+</div>
+<div class="page">
+  <h1>10 · Những điều cần biết trước khi dùng</h1>
+  <p class="lead">Phần này không bắt buộc đọc để chạy được, nhưng đọc để tránh rắc rối về sau.</p>
+
+  <h3>Ba giới hạn kỹ thuật — nói thật</h3>
+  <table>
+    <tr><th style="width:34%">Giới hạn</th><th>Nghĩa là gì với bạn</th></tr>
+    <tr>
+      <td><b>Phải giữ Terminal mở</b></td>
+      <td>Tắt cửa sổ đen = tắt chương trình. Không có cách nào khác.</td>
+    </tr>
+    <tr>
+      <td><b>Dữ liệu mất khi tắt</b></td>
+      <td>Bảng xếp hạng không được lưu lại. Mỗi buổi LIVE bắt đầu từ đầu.</td>
+    </tr>
+    <tr>
+      <td><b>Phụ thuộc TikTok</b></td>
+      <td>Chương trình đọc dữ liệu qua một cách không chính thức. Nếu TikTok thay đổi hệ thống, chương trình có thể ngừng hoạt động và cần cập nhật.</td>
+    </tr>
+  </table>
+
+  <h3>Những gì chương trình KHÔNG làm</h3>
+  <ul>
+    <li><b>Không</b> tự động chặn hay xoá bình luận xấu — bạn phải tự kiểm duyệt chat.</li>
+    <li><b>Không</b> đọc được tin nhắn riêng hay quà ngoài buổi LIVE.</li>
+    <li><b>Không</b> phát LIVE thay bạn — OBS mới làm việc đó.</li>
+    <li><b>Không</b> lưu lại lịch sử quà tặng giữa các buổi.</li>
+  </ul>
+
+  <div class="box danger">
+    <span class="t">Về nội dung và quy định</span>
+    TikTok có quy định riêng với nội dung tôn giáo, tín ngưỡng gắn với việc nhận quà tặng. Việc dùng hiệu ứng để <b>kêu gọi tặng quà</b> có thể vi phạm, tuỳ cách bạn dùng.
+    <br><br>
+    Chương trình này chỉ <b>hiển thị</b> quà người xem đã tặng — nó không tạo quà, không giả mạo người tặng, không tự động gửi tin nhắn. Nhưng <b>bạn chịu trách nhiệm</b> về cách mình sử dụng và nội dung buổi LIVE của mình.
+  </div>
+
+  <h3>Nếu bạn muốn chia sẻ chương trình cho người khác</h3>
+  <p>Chương trình dùng thư viện <code>tiktok-live-connector</code> theo giấy phép <b>AGPL-3.0</b>. Nếu bạn chỉ dùng cho bản thân: <b>không sao cả</b>. Nếu bạn bán hoặc phát hành cho người khác dùng, bạn phải công khai mã nguồn theo cùng giấy phép đó.</p>
+
+  <div class="box info">
+    <span class="t">Bản quyền hình ảnh và âm thanh</span>
+    Nếu bạn ghép nền video cảnh chùa, ảnh, hay nhạc — hãy chắc chắn bạn có quyền dùng chúng. Tải video của người khác rồi phát lại có thể bị TikTok gỡ LIVE hoặc khoá kênh.
+  </div>
+</div>
+
+<div class="page">
+  <h1>Tóm tắt toàn bộ — in trang này dán lên tường</h1>
+
+  <h3>Lần đầu tiên (10–15 phút)</h3>
+  <table>
+    <tr><th style="width:8%">#</th><th style="width:45%">Làm gì</th><th>Xong khi</th></tr>
+    <tr><td>1</td><td>Tải và cài <b>Node.js</b> từ nodejs.org (nút xanh LTS)</td><td>Đã bấm hết các bước cài</td></tr>
+    <tr><td>2</td><td>Tải và cài <b>OBS Studio</b> từ obsproject.com</td><td>OBS mở được</td></tr>
+    <tr><td>3</td><td>Tải thư mục chương trình, đặt ra Desktop</td><td>Thấy file <code>BAT-DAU.command</code></td></tr>
+    <tr><td>4</td><td>Bấm đúp <code>BAT-DAU.command</code>, chờ 1–3 phút</td><td>Bảng điều khiển tự mở trong trình duyệt</td></tr>
+    <tr><td>5</td><td>Bảng điều khiển → bấm <b>Sao chép</b> ở Bước 3</td><td>Đã có đường dẫn trong bộ nhớ</td></tr>
+    <tr><td>6</td><td>OBS → Nguồn → <b>+</b> → <b>Trình duyệt</b> → dán URL, đặt 1080 × 1920</td><td>Hiệu ứng hiện trong OBS</td></tr>
+    <tr><td>7</td><td>Bấm <b>Bắn thử một món quà</b></td><td>Thấy băng rôn + hoa rơi trong OBS</td></tr>
+  </table>
+
+  <h3>Mỗi lần dùng sau đó (1 phút)</h3>
+  <table>
+    <tr><th style="width:8%">#</th><th style="width:45%">Làm gì</th><th>Xong khi</th></tr>
+    <tr><td>1</td><td>Bấm đúp <code>BAT-DAU.command</code></td><td>Bảng điều khiển mở</td></tr>
+    <tr><td>2</td><td>Bật LIVE trên TikTok</td><td>Buổi LIVE đang chạy</td></tr>
+    <tr><td>3</td><td>Nhập tên TikTok → <b>Kết nối</b></td><td>Báo "Đã kết nối tới phòng live!"</td></tr>
+    <tr><td>4</td><td>Mở OBS, bắt đầu phát</td><td>Khán giả thấy hiệu ứng</td></tr>
+  </table>
+
+  <div class="box danger" style="margin-top:16pt">
+    <span class="t">Ba điều tuyệt đối không làm</span>
+    <b>1.</b> Không đóng cửa sổ đen (Terminal) khi đang LIVE<br>
+    <b>2.</b> Không tắt "Shutdown source when not visible" trong OBS (phải để TẮT)<br>
+    <b>3.</b> Không bấm Kết nối trước khi bật LIVE TikTok
+  </div>
+
+  <div class="box tip">
+    <span class="t">Cần giúp?</span>
+    Mở lại tài liệu này ở Chương 9 — phần lớn lỗi đều có cách sửa trong đó. Nếu vẫn kẹt, ghi lại <b>đúng dòng chữ lỗi</b> bạn thấy trên màn hình rồi nhờ người hỗ trợ.
+  </div>
+</div>
+</body></html>
