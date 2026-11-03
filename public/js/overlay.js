@@ -6,6 +6,7 @@ import { BannerQueue } from './banner-queue.js';
 import { renderTemplate, bannerVars, VI_TEMPLATE } from './template.js';
 import { Particles } from './particles.js';
 import { waitingHintVisible, isActivity, isDemo } from './waiting.js';
+import { CharacterLayer, CHARACTER_DEFAULTS } from './characters.js';
 
 const THEMES = ['temple', 'neon', 'tet'];
 const TICKER_MAX = 4;
@@ -19,10 +20,11 @@ const locked = {
   theme: THEMES.includes(params.get('theme')) ? params.get('theme') : null,
   ticker: params.has('ticker') ? params.get('ticker') !== '0' : null,
   muted: params.has('muted') ? params.get('muted') !== '0' : null,
+  characters: params.has('characters') ? params.get('characters') !== '0' : null,
 };
 
 const state = {
-  config: { theme: 'temple', ticker: true, muted: false, template: VI_TEMPLATE },
+  config: { theme: 'temple', ticker: true, muted: false, template: VI_TEMPLATE, characters: { ...CHARACTER_DEFAULTS } },
   combos: new Map(), // key -> { comboCount, user, gift, lastAt }
   comboKey: null,
   comboHideTimer: null,
@@ -60,7 +62,14 @@ const fmt = new Intl.NumberFormat('vi-VN');
 function applyConfig(cfg) {
   state.config = { ...state.config, ...cfg };
   const theme = locked.theme ?? state.config.theme;
-  document.documentElement.dataset.theme = THEMES.includes(theme) ? theme : 'temple';
+  const nextTheme = THEMES.includes(theme) ? theme : 'temple';
+  const themeChanged = document.documentElement.dataset.theme !== nextTheme;
+  document.documentElement.dataset.theme = nextTheme;
+  if (characters) {
+    if (themeChanged) characters.refreshTheme();
+    const c = { ...CHARACTER_DEFAULTS, ...state.config.characters };
+    characters.configure({ ...c, enabled: locked.characters ?? c.enabled });
+  }
   const ticker = locked.ticker ?? state.config.ticker;
   $('#ticker').hidden = !ticker || $('#ticker .ticker__list').childElementCount === 0;
 }
@@ -170,6 +179,15 @@ function renderLeaderboard(rows) {
 // ---------- 3. particles ----------
 const particles = new Particles($('#particles'));
 
+// ---------- 3b. pixel characters (one rAF loop, canvas only) ----------
+let characters = null;
+try {
+  characters = new CharacterLayer($('#characters'));
+} catch (err) {
+  console.warn('[overlay] pixel characters unavailable', err); // the rest of the overlay keeps working
+}
+addEventListener('pagehide', () => characters?.destroy());
+
 // ---------- 4. combo ----------
 const comboEl = $('#combo');
 const comboCountEl = comboEl.querySelector('.combo__count');
@@ -235,20 +253,27 @@ const handlers = {
   hello(d) {
     applyConfig(d.config);
     renderLeaderboard(d.leaderboard ?? []);
+    characters?.setLeaderboard(d.leaderboard ?? []);
     tickerList.replaceChildren();
     for (const c of d.recentComments ?? []) addTicker(c);
     applyConfig({});
   },
   config: applyConfig,
-  leaderboard: renderLeaderboard,
+  leaderboard(rows) {
+    renderLeaderboard(rows);
+    characters?.setLeaderboard(rows);
+  },
   combo(d) {
     if (d.comboCount >= 2) showCombo(d.key, d.user, d.gift, d.comboCount);
+    characters?.onCombo(d);
   },
   event(ev) {
     if (ev.type === 'gift' && ev.gift) onGift(ev);
     else if (ev.type === 'comment' && ev.text) addTicker(ev);
+    characters?.onEvent(ev);
   },
   clear() {
+    characters?.clear();
     banners.clear();
     bannerEl.hidden = true;
     particles.clear();
@@ -327,5 +352,7 @@ window.__overlay = {
     leaderboard: [...boardList.children].map((li) => li.dataset.user),
     theme: document.documentElement.dataset.theme,
     waitingVisible: !waitingEl.hidden && !waitingEl.classList.contains('is-gone'),
+    characters: characters?.stats() ?? null,
   }),
+  benchCharacters: (n) => characters?.bench(n) ?? null,
 };

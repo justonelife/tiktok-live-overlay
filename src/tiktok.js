@@ -48,8 +48,16 @@ export class TikTokSource {
     this.logger = logger;
     this.loadLib = loadLib;
     this.conn = null;
+    // Optional Euler Stream API key (signature provider). Empty = anonymous,
+    // which works but is rate-limited by the provider.
+    this.apiKey = '';
     // errorCode is a stable machine code the panel maps to a friendly message (see public/js/messages.js).
     this.status = { state: 'idle', username: null, roomId: null, error: null, errorCode: null, since: Date.now() };
+  }
+
+  /** Set (or clear) the signature-provider API key used by the next connect. */
+  setApiKey(key) {
+    this.apiKey = typeof key === 'string' ? key.trim() : '';
   }
 
   #set(patch) {
@@ -70,7 +78,10 @@ export class TikTokSource {
       return this.status;
     }
     const { TikTokLiveConnection, WebcastEvent, ControlEvent } = lib;
-    const conn = new TikTokLiveConnection(uniqueId, { enableExtendedGiftInfo: true });
+    const conn = new TikTokLiveConnection(uniqueId, {
+      enableExtendedGiftInfo: true,
+      ...(this.apiKey ? { signApiKey: this.apiKey } : {}),
+    });
     this.conn = conn;
     const safe = (name, fn) => (data) => {
       try {
@@ -134,6 +145,15 @@ export function describeError(err) {
   const out = (code, message) => ({ code, message: message.slice(0, 300) });
   if (name === 'UserOfflineError') return out('user_offline', 'User is offline (not LIVE right now).');
   if (name === 'InvalidUniqueIdError') return out('user_not_found', 'That TikTok username does not exist.');
+  // The signature provider (Euler Stream) rate-limits anonymous callers and asks
+  // for a paid plan once the free window is used up. A free API key fixes it.
+  if (
+    name === 'PremiumFeatureError' ||
+    name === 'SignatureMissingTokensError' ||
+    /business plan|premium feature|signaturemissing|requires an api key|unauthorized/i.test(both)
+  ) {
+    return out('needs_sign_key', `${name}: ${msg}`);
+  }
   if (/rate.?limit/i.test(both)) return out('rate_limited', `Signing service rate-limited the request: ${msg}`);
   if (/timeout|timed out/i.test(both)) return out('timeout', `${name}: ${msg}`);
   if (/ENOTFOUND|EAI_AGAIN|ECONNREFUSED|ECONNRESET|ENETUNREACH|fetch failed|socket hang up/i.test(both)) {

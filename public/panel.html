@@ -110,6 +110,28 @@
         </details>
       </section>
 
+      <!-- PIXEL CHARACTERS -->
+      <section class="step chars" id="chars" aria-labelledby="chars-title">
+        <h2 id="chars-title" class="chars__title"><span class="chars__icon" aria-hidden="true">👾</span>Nhân vật pixel</h2>
+        <p class="hint chars__lead">Mỗi người xem vào phòng sẽ có một nhân vật nhỏ đi lại ở cuối màn hình, vẫy tay, nhảy khi tặng quà và nói chuyện khi bình luận. Đổi là áp dụng ngay.</p>
+        <label class="switch"><input type="checkbox" id="chars-enabled" /> Hiện nhân vật pixel</label>
+        <label class="switch"><input type="checkbox" id="chars-group" /> Thỉnh thoảng cả nhóm cùng nhảy</label>
+        <div class="chars__sliders">
+          <div class="slider">
+            <label for="chars-max">Số nhân vật tối đa: <output id="chars-max-out" for="chars-max">12</output></label>
+            <input type="range" id="chars-max" min="1" max="20" step="1" value="12" />
+          </div>
+          <div class="slider">
+            <label for="chars-scale">Cỡ nhân vật: <output id="chars-scale-out" for="chars-scale">3</output></label>
+            <input type="range" id="chars-scale" min="1" max="6" step="1" value="3" />
+          </div>
+        </div>
+        <div class="try">
+          <button type="button" id="chars-spawn" class="btn btn--gift">👾 Bắn thử nhân vật</button>
+          <p class="try__hint">Thêm 3 người xem giả để xem nhân vật đi lại và chào nhau (không cần đang LIVE).</p>
+        </div>
+      </section>
+
       <!-- ADVANCED -->
       <details class="advanced" id="advanced">
         <summary>Nâng cao</summary>
@@ -125,6 +147,21 @@
             </div>
             <label for="topN">Số người trong bảng xếp hạng</label>
             <input id="topN" type="number" min="1" max="10" />
+          </section>
+
+          <section class="adv-card" aria-labelledby="adv-signkey">
+            <h3 id="adv-signkey">API key (chỉ khi được yêu cầu)</h3>
+            <p class="hint">
+              Chỉ cần khi báo lỗi <b>“hết lượt miễn phí”</b>. Lấy key miễn phí tại
+              <b>eulerstream.com/register</b> → Dashboard → Copy. Key được lưu trên máy bạn,
+              không gửi đi đâu khác.
+            </p>
+            <label for="signkey">Dán API key vào đây</label>
+            <div class="row">
+              <input id="signkey" type="password" autocomplete="off" spellcheck="false" placeholder="dán key rồi bấm Lưu" />
+              <button type="button" id="save-signkey" class="btn btn--secondary">Lưu</button>
+            </div>
+            <p id="signkey-status" class="hint" role="status" aria-live="polite"></p>
           </section>
 
           <section class="adv-card" aria-labelledby="adv-test">

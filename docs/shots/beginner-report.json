@@ -17,7 +17,7 @@
       "shot": "panel-beginner.png",
       "check": "OBS URL uses the real port",
       "pass": true,
-      "detail": "http://127.0.0.1:3000/overlay"
+      "detail": "http://127.0.0.1:3001/overlay"
     },
     {
       "shot": "panel-beginner.png",
@@ -71,7 +71,7 @@
       "shot": "panel-390.png",
       "check": "OBS URL uses the real port",
       "pass": true,
-      "detail": "http://127.0.0.1:3000/overlay"
+      "detail": "http://127.0.0.1:3001/overlay"
     },
     {
       "shot": "panel-390.png",

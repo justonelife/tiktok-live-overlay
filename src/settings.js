@@ -4,7 +4,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync, renameSync } from 'node:fs';
 import path from 'node:path';
-import { defaultConfig, validateConfigPatch } from './config.js';
+import { defaultConfig, validateConfigPatch, applyConfigPatch } from './config.js';
 
 /**
  * Merge a parsed settings object over the defaults, key by key.
@@ -20,7 +20,7 @@ export function sanitizeConfig(raw) {
   }
   for (const [k, v] of Object.entries(raw)) {
     try {
-      Object.assign(config, validateConfigPatch({ [k]: v }));
+      applyConfigPatch(config, validateConfigPatch({ [k]: v }));
     } catch (err) {
       problems.push(err.message);
     }

@@ -8,6 +8,8 @@ export const ERROR_MESSAGES = Object.freeze({
   user_not_found: 'Không tìm thấy tên TikTok này. Hãy kiểm tra lại chính tả.',
   invalid_username: 'Tên TikTok chỉ gồm chữ cái không dấu, số, dấu chấm hoặc gạch dưới (2–24 ký tự).',
   rate_limited: 'TikTok đang tạm chặn vì kết nối quá nhiều lần. Đợi khoảng 1 phút rồi bấm “Thử lại”.',
+  needs_sign_key:
+    'Dịch vụ kết nối đã hết lượt miễn phí. Đợi 1 phút rồi bấm “Thử lại”; nếu vẫn vậy, mở mục Nâng cao và nhập API key miễn phí.',
   timeout: 'TikTok phản hồi quá chậm. Hãy bấm “Thử lại”.',
   network: 'Không kết nối được tới TikTok. Hãy kiểm tra mạng Internet rồi bấm “Thử lại”.',
   lib_load: 'Thiếu thành phần kết nối TikTok. Hãy đóng cửa sổ đen rồi bấm đúp lại file BAT-DAU.',

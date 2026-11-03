@@ -334,7 +334,8 @@ async function main() {
         particlesAlive: dom.particles > 0 && dom.liveParticles <= 160,
         domNodesCapped: dom.nodes < 600,
         panelsInsideViewport: dom.panelsInsideViewport,
-        pngHasTransparency: alpha.hasAlpha && alpha.transparentRatio > 0.3 && alpha.w === width && alpha.h === height,
+        // > 25%: the pixel-character band adds opaque pixels (dense at 390 px wide: ~29.6%).
+        pngHasTransparency: alpha.hasAlpha && alpha.transparentRatio > 0.25 && alpha.w === width && alpha.h === height,
       };
       report.shots.push({ file: `docs/shots/${file}`, width, height, alpha: { transparentRatio: +alpha.transparentRatio.toFixed(3) }, dom, checks });
       for (const [k, v] of Object.entries(checks)) report.checks.push({ shot: file, check: k, pass: v });

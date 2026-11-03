@@ -5,10 +5,10 @@
       "width": 1080,
       "height": 1920,
       "alpha": {
-        "transparentRatio": 0.575
+        "transparentRatio": 0.52
       },
       "dom": {
-        "nodes": 151,
+        "nodes": 152,
         "liveParticles": 88,
         "bannerQueue": 1,
         "bannerDropped": 0,
@@ -21,6 +21,89 @@
         ],
         "theme": "temple",
         "waitingVisible": false,
+        "characters": {
+          "enabled": true,
+          "running": true,
+          "time": 1.1,
+          "count": 5,
+          "pending": 0,
+          "max": 12,
+          "pixel": 9,
+          "states": {
+            "talk": 2,
+            "celebrate": 1,
+            "dance": 2
+          },
+          "bubbles": 3,
+          "crowns": 4,
+          "effects": 2,
+          "frames": 21,
+          "fps": 16,
+          "frameMs": 1.16,
+          "errors": 0,
+          "outline": "#2c060c",
+          "who": [
+            {
+              "id": "u1003",
+              "name": "Hoa Le",
+              "state": "talk",
+              "kind": "talk",
+              "x": 627,
+              "y": 652,
+              "dir": -1,
+              "crown": 3,
+              "bubble": null
+            },
+            {
+              "id": "u1006",
+              "name": "Sky Walker",
+              "state": "celebrate",
+              "kind": "celebrate",
+              "x": 112,
+              "y": 463,
+              "dir": 1,
+              "crown": 1,
+              "bubble": "Love the overlay ✨"
+            },
+            {
+              "id": "u1004",
+              "name": "BaoPham",
+              "state": "talk",
+              "kind": "talk",
+              "x": 968,
+              "y": 462,
+              "dir": 1,
+              "crown": 0,
+              "bubble": "Hay quá!"
+            },
+            {
+              "id": "u1002",
+              "name": "Minh Tran",
+              "state": "dance",
+              "kind": "dance",
+              "x": 787,
+              "y": 682,
+              "dir": 1,
+              "crown": 2,
+              "bubble": "Hello from Saigon!"
+            },
+            {
+              "id": "u1001",
+              "name": "Linh Nguyen",
+              "state": "dance",
+              "kind": "dance",
+              "x": 219,
+              "y": 413,
+              "dir": -1,
+              "crown": 5,
+              "bubble": null
+            }
+          ],
+          "spawned": 5,
+          "evicted": 0,
+          "greetings": 0,
+          "groupDances": 0
+        },
         "htmlBg": "rgba(0, 0, 0, 0)",
         "bodyBg": "rgba(0, 0, 0, 0)",
         "overflow": "hidden",
@@ -57,10 +140,10 @@
       "width": 1080,
       "height": 1920,
       "alpha": {
-        "transparentRatio": 0.532
+        "transparentRatio": 0.477
       },
       "dom": {
-        "nodes": 151,
+        "nodes": 152,
         "liveParticles": 88,
         "bannerQueue": 1,
         "bannerDropped": 0,
@@ -73,6 +156,89 @@
         ],
         "theme": "neon",
         "waitingVisible": false,
+        "characters": {
+          "enabled": true,
+          "running": true,
+          "time": 1.2,
+          "count": 5,
+          "pending": 0,
+          "max": 12,
+          "pixel": 9,
+          "states": {
+            "talk": 2,
+            "celebrate": 1,
+            "dance": 2
+          },
+          "bubbles": 3,
+          "crowns": 4,
+          "effects": 1,
+          "frames": 26,
+          "fps": 20,
+          "frameMs": 1.45,
+          "errors": 0,
+          "outline": "#160a2e",
+          "who": [
+            {
+              "id": "u1003",
+              "name": "Hoa Le",
+              "state": "talk",
+              "kind": "talk",
+              "x": 808,
+              "y": 652,
+              "dir": -1,
+              "crown": 3,
+              "bubble": null
+            },
+            {
+              "id": "u1006",
+              "name": "Sky Walker",
+              "state": "celebrate",
+              "kind": "celebrate",
+              "x": 112,
+              "y": 463,
+              "dir": 1,
+              "crown": 1,
+              "bubble": "Love the overlay ✨"
+            },
+            {
+              "id": "u1004",
+              "name": "BaoPham",
+              "state": "talk",
+              "kind": "talk",
+              "x": 456,
+              "y": 462,
+              "dir": 1,
+              "crown": 0,
+              "bubble": "Hay quá!"
+            },
+            {
+              "id": "u1002",
+              "name": "Minh Tran",
+              "state": "dance",
+              "kind": "dance",
+              "x": 968,
+              "y": 682,
+              "dir": 1,
+              "crown": 2,
+              "bubble": "Hello from Saigon!"
+            },
+            {
+              "id": "u1001",
+              "name": "Linh Nguyen",
+              "state": "dance",
+              "kind": "dance",
+              "x": 224,
+              "y": 413,
+              "dir": -1,
+              "crown": 5,
+              "bubble": null
+            }
+          ],
+          "spawned": 5,
+          "evicted": 0,
+          "greetings": 0,
+          "groupDances": 0
+        },
         "htmlBg": "rgba(0, 0, 0, 0)",
         "bodyBg": "rgba(0, 0, 0, 0)",
         "overflow": "hidden",
@@ -109,10 +275,10 @@
       "width": 1080,
       "height": 1920,
       "alpha": {
-        "transparentRatio": 0.601
+        "transparentRatio": 0.542
       },
       "dom": {
-        "nodes": 151,
+        "nodes": 152,
         "liveParticles": 88,
         "bannerQueue": 1,
         "bannerDropped": 0,
@@ -125,6 +291,89 @@
         ],
         "theme": "tet",
         "waitingVisible": false,
+        "characters": {
+          "enabled": true,
+          "running": true,
+          "time": 1.2,
+          "count": 5,
+          "pending": 0,
+          "max": 12,
+          "pixel": 9,
+          "states": {
+            "talk": 2,
+            "celebrate": 1,
+            "dance": 2
+          },
+          "bubbles": 3,
+          "crowns": 4,
+          "effects": 2,
+          "frames": 18,
+          "fps": 14,
+          "frameMs": 1.63,
+          "errors": 0,
+          "outline": "#7a0a11",
+          "who": [
+            {
+              "id": "u1003",
+              "name": "Hoa Le",
+              "state": "talk",
+              "kind": "talk",
+              "x": 202,
+              "y": 652,
+              "dir": -1,
+              "crown": 3,
+              "bubble": null
+            },
+            {
+              "id": "u1006",
+              "name": "Sky Walker",
+              "state": "celebrate",
+              "kind": "celebrate",
+              "x": 854,
+              "y": 463,
+              "dir": 1,
+              "crown": 1,
+              "bubble": "Love the overlay ✨"
+            },
+            {
+              "id": "u1004",
+              "name": "BaoPham",
+              "state": "talk",
+              "kind": "talk",
+              "x": 541,
+              "y": 462,
+              "dir": 1,
+              "crown": 0,
+              "bubble": "Hay quá!"
+            },
+            {
+              "id": "u1002",
+              "name": "Minh Tran",
+              "state": "dance",
+              "kind": "dance",
+              "x": 396,
+              "y": 682,
+              "dir": 1,
+              "crown": 2,
+              "bubble": "Hello from Saigon!"
+            },
+            {
+              "id": "u1001",
+              "name": "Linh Nguyen",
+              "state": "dance",
+              "kind": "dance",
+              "x": 968,
+              "y": 413,
+              "dir": -1,
+              "crown": 5,
+              "bubble": null
+            }
+          ],
+          "spawned": 5,
+          "evicted": 0,
+          "greetings": 0,
+          "groupDances": 0
+        },
         "htmlBg": "rgba(0, 0, 0, 0)",
         "bodyBg": "rgba(0, 0, 0, 0)",
         "overflow": "hidden",
@@ -161,10 +410,10 @@
       "width": 390,
       "height": 693,
       "alpha": {
-        "transparentRatio": 0.357
+        "transparentRatio": 0.299
       },
       "dom": {
-        "nodes": 151,
+        "nodes": 152,
         "liveParticles": 88,
         "bannerQueue": 1,
         "bannerDropped": 0,
@@ -177,6 +426,89 @@
         ],
         "theme": "temple",
         "waitingVisible": false,
+        "characters": {
+          "enabled": true,
+          "running": true,
+          "time": 1.2,
+          "count": 5,
+          "pending": 0,
+          "max": 12,
+          "pixel": 3,
+          "states": {
+            "talk": 2,
+            "celebrate": 1,
+            "dance": 2
+          },
+          "bubbles": 3,
+          "crowns": 4,
+          "effects": 2,
+          "frames": 17,
+          "fps": 14,
+          "frameMs": 1.52,
+          "errors": 0,
+          "outline": "#2c060c",
+          "who": [
+            {
+              "id": "u1003",
+              "name": "Hoa Le",
+              "state": "talk",
+              "kind": "talk",
+              "x": 64,
+              "y": 236,
+              "dir": -1,
+              "crown": 3,
+              "bubble": null
+            },
+            {
+              "id": "u1006",
+              "name": "Sky Walker",
+              "state": "celebrate",
+              "kind": "celebrate",
+              "x": 315,
+              "y": 167,
+              "dir": 1,
+              "crown": 1,
+              "bubble": "Love the overlay ✨"
+            },
+            {
+              "id": "u1004",
+              "name": "BaoPham",
+              "state": "talk",
+              "kind": "talk",
+              "x": 171,
+              "y": 167,
+              "dir": 1,
+              "crown": 0,
+              "bubble": "Hay quá!"
+            },
+            {
+              "id": "u1002",
+              "name": "Minh Tran",
+              "state": "dance",
+              "kind": "dance",
+              "x": 245,
+              "y": 247,
+              "dir": 1,
+              "crown": 2,
+              "bubble": "Hello from Saigon!"
+            },
+            {
+              "id": "u1001",
+              "name": "Linh Nguyen",
+              "state": "dance",
+              "kind": "dance",
+              "x": 209,
+              "y": 149,
+              "dir": -1,
+              "crown": 5,
+              "bubble": null
+            }
+          ],
+          "spawned": 5,
+          "evicted": 0,
+          "greetings": 0,
+          "groupDances": 0
+        },
         "htmlBg": "rgba(0, 0, 0, 0)",
         "bodyBg": "rgba(0, 0, 0, 0)",
         "overflow": "hidden",

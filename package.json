@@ -14,7 +14,8 @@
     "test": "node --test",
     "launch": "node src/launch.js",
     "shots": "node scripts/screenshots.js",
-    "shots:beginner": "node scripts/shots-beginner.js"
+    "shots:beginner": "node scripts/shots-beginner.js",
+    "shots:characters": "node scripts/shots-characters.js"
   },
   "dependencies": {
     "express": "^5.3.0",

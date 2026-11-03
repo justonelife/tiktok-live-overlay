@@ -265,6 +265,7 @@ ul {
 .particles {
   position: absolute;
   inset: 0;
+  z-index: 1;
   pointer-events: none;
   overflow: hidden;
 }
@@ -299,6 +300,29 @@ ul {
 .p--icon {
   font-size: 1.7rem;
   line-height: 1;
+}
+
+/* ---------- 3b. pixel characters (canvas stage band above the ticker) ----------
+ * Stacking: particles (1) < characters (2) < banner / leaderboard / combo / ticker (3). */
+.chars {
+  position: absolute;
+  left: 0;
+  bottom: 12%;
+  width: 100%;
+  height: 38%;
+  z-index: 2;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+.banner,
+.board,
+.combo,
+.ticker {
+  z-index: 3;
+}
+.waiting,
+.conn {
+  z-index: 4;
 }
 
 /* ---------- 4. combo counter ---------- */

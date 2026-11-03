@@ -8,13 +8,15 @@ import { WebSocketServer } from 'ws';
 import { OverlayEngine } from './engine.js';
 import { MockGenerator, GIFT_CATALOG } from './mock.js';
 import { TikTokSource, USERNAME_RE } from './tiktok.js';
-import { validateConfigPatch } from './config.js';
+import { validateConfigPatch, applyConfigPatch } from './config.js';
 import { loadSettings, saveSettings } from './settings.js';
+import { loadSignKey, saveSignKey, isValidSignKey, maskSignKey, SIGN_KEY_FILE } from './signkey.js';
 import { listenOnFreePort } from './port.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC = path.join(ROOT, 'public');
 const MAX_EMIT_BATCH = 100;
+const MAX_SPAWN = 20;
 const WS_MAX_BUFFER = 1 << 20;
 
 const CSP = [
@@ -56,6 +58,11 @@ export function createOverlayServer(opts = {}) {
   const ingest = (raw) => engine.ingest(raw);
   const mockGen = new MockGenerator({ emit: ingest, rate: mockRate });
   const tiktok = new TikTokSource({ emit: ingest, logger });
+  // API key for the signature provider: own file next to the settings, never
+  // part of `config` (which is broadcast to every overlay client).
+  const signKeyPath = settingsPath ? path.join(path.dirname(settingsPath), SIGN_KEY_FILE) : null;
+  let signKey = loadSignKey(signKeyPath, logger);
+  tiktok.setApiKey(signKey);
   const clients = new Set();
 
   const broadcast = (msg) => {
@@ -87,6 +94,7 @@ export function createOverlayServer(opts = {}) {
     mock: { running: mockGen.running, rate: mockGen.rate },
     clients: clients.size,
     counters: { ...engine.counters },
+    signKey: { set: Boolean(signKey), hint: maskSignKey(signKey) },
     config,
   });
 
@@ -175,9 +183,18 @@ export function createOverlayServer(opts = {}) {
 
   api.get('/gifts', (req, res) => res.json({ ok: true, gifts: GIFT_CATALOG.map(({ id, name, diamond }) => ({ id, name, diamond })) }));
 
+  // Fake viewers join so the operator can preview the pixel characters without a live room.
+  api.post('/characters/spawn', (req, res) => {
+    const { count = 3 } = body(req);
+    if (!Number.isInteger(count) || count < 1 || count > MAX_SPAWN) throw httpError(400, `count must be an integer 1..${MAX_SPAWN}`);
+    // While a real room is connected, fake viewers only join: no fake chat in the real ticker.
+    const viewers = mockGen.viewers(count, { chat: tiktok.status.state !== 'connected' });
+    res.json({ ok: true, spawned: viewers.map(({ id, name }) => ({ id, name })) });
+  });
+
   api.post('/config', (req, res) => {
     const patch = validateConfigPatch(req.body);
-    Object.assign(config, patch);
+    applyConfigPatch(config, patch);
     saveSettings(settingsPath, config, logger);
     if (patch.topN) engine.stats.topN = patch.topN;
     broadcast({ kind: 'config', data: config });
@@ -188,6 +205,24 @@ export function createOverlayServer(opts = {}) {
   api.post('/clear', (req, res) => {
     engine.clear();
     res.json({ ok: true });
+  });
+
+  // Signature-provider API key. GET never returns the key, only a masked hint.
+  api.get('/signkey', (req, res) => res.json({ ok: true, set: Boolean(signKey), hint: maskSignKey(signKey) }));
+
+  api.post('/signkey', (req, res) => {
+    const { key } = body(req);
+    if (typeof key !== 'string') throw httpError(400, 'API key phải là chuỗi', 'invalid_sign_key');
+    const clean = key.trim();
+    if (clean && !isValidSignKey(clean)) {
+      throw httpError(400, 'API key không đúng định dạng. Hãy sao chép lại từ trang Dashboard.', 'invalid_sign_key');
+    }
+    if (!saveSignKey(signKeyPath, clean, logger)) {
+      throw httpError(500, 'Không lưu được API key xuống ổ đĩa', 'save_failed');
+    }
+    signKey = clean;
+    tiktok.setApiKey(signKey);
+    res.json({ ok: true, set: Boolean(signKey), hint: maskSignKey(signKey), needsReconnect: tiktok.status.state === 'error' });
   });
 
   api.post('/connect', async (req, res) => {
@@ -252,7 +287,10 @@ export function createOverlayServer(opts = {}) {
     ws.on('pong', () => (ws.isAlive = true));
   });
 
-  if (mock) mockGen.start();
+  if (mock) {
+    mockGen.start();
+    mockGen.greet(8); // a crowd of pixel characters right away
+  }
 
   return {
     server,

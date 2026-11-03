@@ -4,9 +4,18 @@ import { VI_TEMPLATE } from '../public/js/template.js';
 
 export const THEMES = Object.freeze(['temple', 'neon', 'tet']);
 
+export const CHARACTER_DEFAULTS = Object.freeze({ enabled: true, max: 12, scale: 3, groupDance: true });
+
 export function defaultConfig() {
-  return { theme: 'temple', muted: false, ticker: true, template: VI_TEMPLATE, topN: 5 };
+  return { theme: 'temple', muted: false, ticker: true, template: VI_TEMPLATE, topN: 5, characters: { ...CHARACTER_DEFAULTS } };
 }
+
+const CHARACTER_VALIDATORS = {
+  enabled: (v) => (typeof v === 'boolean' ? v : bad('characters.enabled must be boolean')),
+  max: (v) => (Number.isInteger(v) && v >= 1 && v <= 20 ? v : bad('characters.max must be an integer 1..20')),
+  scale: (v) => (Number.isInteger(v) && v >= 1 && v <= 6 ? v : bad('characters.scale must be an integer 1..6')),
+  groupDance: (v) => (typeof v === 'boolean' ? v : bad('characters.groupDance must be boolean')),
+};
 
 const VALIDATORS = {
   theme: (v) => (THEMES.includes(v) ? v : bad('theme must be one of ' + THEMES.join(', '))),
@@ -20,6 +29,16 @@ const VALIDATORS = {
     return s;
   },
   topN: (v) => (Number.isInteger(v) && v >= 1 && v <= 10 ? v : bad('topN must be an integer 1..10')),
+  // Partial object: only the given sub-keys are validated and returned (merged by applyConfigPatch).
+  characters: (v) => {
+    if (!v || typeof v !== 'object' || Array.isArray(v)) bad('characters must be an object');
+    const out = {};
+    for (const [k, val] of Object.entries(v)) {
+      if (!Object.hasOwn(CHARACTER_VALIDATORS, k)) bad(`unknown characters key: ${k.slice(0, 32)}`);
+      out[k] = CHARACTER_VALIDATORS[k](val);
+    }
+    return out;
+  },
 };
 
 function bad(msg) {
@@ -37,4 +56,12 @@ export function validateConfigPatch(patch) {
     out[k] = VALIDATORS[k](v);
   }
   return out;
+}
+
+/** Apply a validated patch to `config` in place; nested `characters` is merged, not replaced. */
+export function applyConfigPatch(config, patch) {
+  for (const [k, v] of Object.entries(patch)) {
+    config[k] = k === 'characters' ? { ...CHARACTER_DEFAULTS, ...config.characters, ...v } : v;
+  }
+  return config;
 }

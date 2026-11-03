@@ -46,6 +46,13 @@ const COMMENTS = [
   '🔥🔥🔥',
 ];
 
+// Extra fake viewers for POST /api/characters/spawn (pixel character preview).
+const VIEWER_NAMES = [
+  'Bông Gòn', 'Cá Viên', 'Mít Tơ', 'Su Kem', 'Bắp Rang', 'Trà Sữa', 'Mochi', 'Kẹo Dẻo', 'Ốc Nhỏ', 'Gấu Trúc',
+  'pixel.kid', 'retro_fan', 'Cún Con', 'Bánh Bao', 'Sóc Nâu', 'Mây Xanh', 'Hạt Tiêu', 'Đậu Đỏ', 'NamCa', 'Táo Đỏ',
+];
+const VIEWER_LINES = ['Xin chào mọi người!', 'Hi hi 👋', 'Mình mới vào nè', 'Dễ thương quá', 'Chào chủ phòng!', 'Wow pixel 😍'];
+
 /** Small deterministic PRNG (mulberry32). */
 export function mulberry32(seed) {
   let a = seed >>> 0;
@@ -84,6 +91,8 @@ export class MockGenerator {
     this.timer = null;
     this.streakTimers = new Set();
     this.msgSeq = 0;
+    this.viewerSeq = 0;
+    this.viewerTag = Math.floor(this.rand() * 36 ** 3).toString(36); // per-run tag: ids never repeat in a session
   }
 
   static clampRate(rate) {
@@ -120,6 +129,39 @@ export class MockGenerator {
     return `mock${++this.msgSeq}`;
   }
 
+  #later(fn, ms) {
+    const t = setTimeout(() => {
+      this.streakTimers.delete(t);
+      fn();
+    }, ms);
+    t.unref?.();
+    this.streakTimers.add(t);
+  }
+
+  /** The first `n` mock users join, staggered (so a crowd of characters is on stage right away). */
+  greet(n = 8) {
+    MOCK_USERS.slice(0, n).forEach((u, i) => this.#later(() => this.emit({ type: 'join', user: userOf(u) }), 120 + i * 260));
+  }
+
+  /**
+   * `count` brand-new fake viewers join now; with `chat`, about half say something a moment later.
+   * @returns {{id: string, name: string}[]}
+   */
+  viewers(count, { chat = true } = {}) {
+    const out = [];
+    for (let i = 0; i < count; i++) {
+      const n = Math.floor(this.rand() * 1e6);
+      const user = { id: `v${this.viewerTag}_${(++this.viewerSeq).toString(36)}`, name: `${VIEWER_NAMES[n % VIEWER_NAMES.length]} ${n % 100}`, avatarUrl: '' };
+      this.emit({ type: 'join', user });
+      if (chat && this.rand() < 0.5) {
+        const text = VIEWER_LINES[Math.floor(this.rand() * VIEWER_LINES.length)];
+        this.#later(() => this.emit({ type: 'comment', user, text }), 1400 + this.rand() * 1600);
+      }
+      out.push(user);
+    }
+    return out;
+  }
+
   /** Emit one randomly chosen action. */
   tick() {
     const r = this.rand();
@@ -147,20 +189,12 @@ export class MockGenerator {
       n++;
       this.emit({ type: 'gift', msgId: this.#msgId(), user, gift: { ...base, repeatCount: n, repeatEnd: false } });
       if (n < total) {
-        schedule(step, 180 + this.rand() * 220);
+        this.#later(step, 180 + this.rand() * 220);
       } else if (sendEnd) {
-        schedule(() => {
+        this.#later(() => {
           this.emit({ type: 'gift', msgId: this.#msgId(), user, gift: { ...base, repeatCount: n, repeatEnd: true } });
         }, 300);
       }
-    };
-    const schedule = (fn, ms) => {
-      const t = setTimeout(() => {
-        this.streakTimers.delete(t);
-        fn();
-      }, ms);
-      t.unref?.();
-      this.streakTimers.add(t);
     };
     step();
   }

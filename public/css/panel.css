@@ -116,6 +116,18 @@ h1 { font-size: 1.45rem; line-height: 1.25; margin: 0; }
 .help summary::-webkit-details-marker, .advanced summary::-webkit-details-marker { display: none; }
 .help__list { padding-left: 1.4rem; display: grid; gap: 0.4rem; }
 
+/* ---------- pixel characters ---------- */
+.chars__title { display: flex; align-items: center; gap: 0.75rem; font-size: 1.4rem; line-height: 1.3; margin: 0 0 0.5rem; }
+.chars__icon { flex: none; display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: #ece7df; font-size: 1.3rem; }
+.chars__lead { margin: 0 0 0.8rem; }
+.switch { display: flex; gap: 0.6rem; align-items: center; font-size: 1.05rem; font-weight: 600; margin: 0.5rem 0; min-height: 2.75rem; cursor: pointer; }
+.switch input { width: 1.4rem; height: 1.4rem; accent-color: var(--primary); flex: none; }
+.chars__sliders { display: grid; gap: 0.5rem 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); margin: 0.4rem 0 0.2rem; }
+.slider label { display: block; font-size: 1.05rem; font-weight: 600; margin: 0.4rem 0 0.2rem; }
+.slider output { display: inline-block; min-width: 1.6em; text-align: center; font-weight: 800; color: var(--primary); }
+.slider input[type='range'] { width: 100%; min-height: 2.75rem; accent-color: var(--primary); }
+.chars .try { margin-top: 0.8rem; }
+
 /* ---------- advanced ---------- */
 .advanced { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.4rem 1.5rem; }
 .advanced summary { font-size: 1.2rem; }

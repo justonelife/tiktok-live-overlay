@@ -1,0 +1,360 @@
+{
+  "errors": [],
+  "warnings": [],
+  "checks": [
+    {
+      "check": "POST /api/characters/spawn {count:3} -> 200 + 3 viewers",
+      "pass": true,
+      "detail": "Đậu Đỏ 57, Ốc Nhỏ 28, Mây Xanh 75"
+    },
+    {
+      "check": "mock mode puts >= 6 characters on stage",
+      "pass": true,
+      "detail": "count=10 pending=0"
+    },
+    {
+      "check": "one rAF loop running",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "temple: applied live without reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "temple: outline colour comes from --panel-bg-2",
+      "pass": true,
+      "detail": "#2c060c"
+    },
+    {
+      "check": "temple: interaction scene (wave/dance/celebrate/talk)",
+      "pass": true,
+      "detail": "heart:1 dance:2 wave:2 celebrate:2 talk:2 walk:1 bubbles:3"
+    },
+    {
+      "check": "temple: canvas is not empty",
+      "pass": true,
+      "detail": "205612 opaque px (26.1%), 1510 colours, 1080x730"
+    },
+    {
+      "check": "temple: nearest-neighbour scaling",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "neon: applied live without reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "neon: outline colour comes from --panel-bg-2",
+      "pass": true,
+      "detail": "#160a2e"
+    },
+    {
+      "check": "neon: interaction scene (wave/dance/celebrate/talk)",
+      "pass": true,
+      "detail": "heart:1 dance:2 idle:3 celebrate:2 wave:1 talk:1 enter:1 bubbles:2"
+    },
+    {
+      "check": "neon: canvas is not empty",
+      "pass": true,
+      "detail": "209304 opaque px (26.5%), 1190 colours, 1080x730"
+    },
+    {
+      "check": "neon: nearest-neighbour scaling",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "tet: applied live without reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "tet: outline colour comes from --panel-bg-2",
+      "pass": true,
+      "detail": "#7a0a11"
+    },
+    {
+      "check": "tet: interaction scene (wave/dance/celebrate/talk)",
+      "pass": true,
+      "detail": "heart:3 dance:3 wave:2 celebrate:2 talk:2 bubbles:3"
+    },
+    {
+      "check": "tet: canvas is not empty",
+      "pass": true,
+      "detail": "236564 opaque px (30.0%), 1259 colours, 1080x730"
+    },
+    {
+      "check": "tet: nearest-neighbour scaling",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "stage band is ~38% of height along the bottom",
+      "pass": true,
+      "detail": "top 960 bottom 1690"
+    },
+    {
+      "check": "stage does not overlap banner",
+      "pass": true,
+      "detail": "banner 96..216"
+    },
+    {
+      "check": "stage does not overlap board",
+      "pass": true,
+      "detail": "board 326..713"
+    },
+    {
+      "check": "stage does not overlap combo",
+      "pass": true,
+      "detail": "combo 653..827"
+    },
+    {
+      "check": "ticker sits below the stage (not covered)",
+      "pass": true,
+      "detail": "ticker top 1711 >= stage bottom 1690"
+    },
+    {
+      "check": "z-order: particles < characters < banner/leaderboard/combo/ticker",
+      "pass": true,
+      "detail": "{\"particles\":1,\"chars\":2,\"banner\":3,\"board\":3,\"combo\":3,\"ticker\":3}"
+    },
+    {
+      "check": "canvas ignores pointer events",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "banner + leaderboard visible during the scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "group dance happened (every 25-40 s)",
+      "pass": true,
+      "detail": "groupDances=1 at stage time 33.1 s (wall 34 s)"
+    },
+    {
+      "check": "neighbours greeted each other at least once",
+      "pass": true,
+      "detail": "greetings=4"
+    },
+    {
+      "check": "FPS with 12 characters >= 55 and >= 90% of bare rAF",
+      "pass": true,
+      "detail": "60.1 fps vs bare rAF 47.3 fps over 3.01 s, 12 characters"
+    },
+    {
+      "check": "update+draw cost per frame <= 4 ms (60 fps budget is 16.7 ms)",
+      "pass": true,
+      "detail": "0.69 ms/frame (EMA)"
+    },
+    {
+      "check": "throughput benchmark: 600 frames without vsync (incl. raster flush)",
+      "pass": true,
+      "detail": "0.062 ms/frame -> ~16173 fps capacity with 12 characters"
+    },
+    {
+      "check": "no DOM nodes created per frame (one canvas, stable node count)",
+      "pass": true,
+      "detail": "53 -> 53 nodes outside #particles, 1 canvas"
+    },
+    {
+      "check": "cap never exceeded under a 20-viewer burst",
+      "pass": true,
+      "detail": "max seen 12 / cap 12, evicted so far 49"
+    },
+    {
+      "check": "spawn endpoint rejects count 0 / 21 / \"x\"",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "scale/max apply live over WebSocket",
+      "pass": true,
+      "detail": "pixel 15, count 6/6"
+    },
+    {
+      "check": "disable hides the canvas and cancels rAF",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "re-enable restarts the loop",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "character frame loop reported 0 errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "panel 1080px: section has no horizontal overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "panel 390px: section has no horizontal overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "panel controls show the server config",
+      "pass": true,
+      "detail": "{\"enabled\":true,\"group\":true,\"max\":\"12\",\"scale\":\"3\",\"maxOut\":\"12\"}"
+    },
+    {
+      "check": "panel slider \"Số nhân vật tối đa\" applies (debounced) to the server",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "panel switch \"nhảy tập thể\" applies",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "panel button \"Bắn thử nhân vật\" spawns viewers",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "measurements": {
+    "browser": "headful Chrome, off-screen window",
+    "baselineFps": 47.257720984265355,
+    "canvas-temple": {
+      "w": 1080,
+      "h": 730,
+      "filled": 205612,
+      "ratio": 0.26079654997463214,
+      "colors": 1510,
+      "smoothing": false
+    },
+    "scene-temple": {
+      "states": {
+        "heart": 1,
+        "dance": 2,
+        "wave": 2,
+        "celebrate": 2,
+        "talk": 2,
+        "walk": 1
+      },
+      "bubbles": 3,
+      "crowns": 5,
+      "count": 10
+    },
+    "canvas-neon": {
+      "w": 1080,
+      "h": 730,
+      "filled": 209304,
+      "ratio": 0.2654794520547945,
+      "colors": 1190,
+      "smoothing": false
+    },
+    "scene-neon": {
+      "states": {
+        "heart": 1,
+        "dance": 2,
+        "idle": 3,
+        "celebrate": 2,
+        "wave": 1,
+        "talk": 1,
+        "enter": 1
+      },
+      "bubbles": 2,
+      "crowns": 5,
+      "count": 11
+    },
+    "canvas-tet": {
+      "w": 1080,
+      "h": 730,
+      "filled": 236564,
+      "ratio": 0.3000558092338914,
+      "colors": 1259,
+      "smoothing": false
+    },
+    "scene-tet": {
+      "states": {
+        "heart": 3,
+        "dance": 3,
+        "wave": 2,
+        "celebrate": 2,
+        "talk": 2
+      },
+      "bubbles": 3,
+      "crowns": 5,
+      "count": 12
+    },
+    "layout": {
+      "chars": {
+        "top": 960.015625,
+        "bottom": 1689.609375,
+        "left": 0,
+        "right": 1080
+      },
+      "banner": {
+        "top": 96,
+        "bottom": 216.015625,
+        "left": 64.8046875,
+        "right": 1015.1953125
+      },
+      "board": {
+        "top": 326.390625,
+        "bottom": 712.96875,
+        "left": 32.390625,
+        "right": 485.984375
+      },
+      "combo": {
+        "top": 652.796875,
+        "bottom": 827.46875,
+        "left": 822.984375,
+        "right": 1036.8125
+      },
+      "ticker": {
+        "top": 1711.46875,
+        "bottom": 1862.40625,
+        "left": 32.390625,
+        "right": 1047.609375
+      },
+      "z": {
+        "particles": 1,
+        "chars": 2,
+        "banner": 3,
+        "board": 3,
+        "combo": 3,
+        "ticker": 3
+      },
+      "pointer": "none"
+    },
+    "fps": {
+      "fps": 60.13688616802771,
+      "seconds": 3.009800000190735,
+      "frameMs": 0.69,
+      "count": 12,
+      "effects": 7,
+      "nodesBefore": 53,
+      "nodesAfter": 53,
+      "canvases": 1
+    },
+    "benchMsPerFrame": 0.06183333317438761,
+    "cap": {
+      "maxSeen": 12,
+      "cap": 12,
+      "evicted": 49
+    },
+    "final": {
+      "count": 6,
+      "spawned": 55,
+      "evicted": 64,
+      "greetings": 9,
+      "groupDances": 1,
+      "errors": 0,
+      "fps": 60,
+      "frameMs": 0.65
+    }
+  }
+}

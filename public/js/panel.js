@@ -117,6 +117,14 @@ function showConfig(c) {
   $('#muted').checked = c.muted;
   if (document.activeElement !== $('#template')) $('#template').value = c.template;
   $('#topN').value = c.topN;
+  if (c.characters) {
+    $('#chars-enabled').checked = c.characters.enabled;
+    $('#chars-group').checked = c.characters.groupDance;
+    for (const [id, key] of [['chars-max', 'max'], ['chars-scale', 'scale']]) {
+      if (document.activeElement !== $(`#${id}`)) $(`#${id}`).value = c.characters[key];
+      $(`#${id}-out`).textContent = $(`#${id}`).value;
+    }
+  }
 }
 
 async function setConfig(patch, okMsg) {
@@ -215,6 +223,51 @@ $('#ticker').addEventListener('change', (e) => setConfig({ ticker: e.target.chec
 $('#muted').addEventListener('change', (e) => setConfig({ muted: e.target.checked }));
 $('#save-template').addEventListener('click', () => setConfig({ template: $('#template').value }, 'Đã lưu mẫu câu.'));
 $('#topN').addEventListener('change', (e) => setConfig({ topN: Number(e.target.value) }));
+
+// ---------- API key for the signature provider (advanced) ----------
+async function refreshSignKey() {
+  const el = $('#signkey-status');
+  if (!el) return;
+  const r = await api('/signkey');
+  if (!r || !r.ok) {
+    el.textContent = '';
+    return;
+  }
+  el.textContent = r.set
+    ? `Đã lưu key (${r.hint}). Nếu Bước 1 đang báo lỗi, bấm “Thử lại”.`
+    : 'Chưa có API key. Chỉ cần nhập khi gặp lỗi “hết lượt miễn phí”.';
+}
+const saveSignKeyBtn = $('#save-signkey');
+if (saveSignKeyBtn) {
+  saveSignKeyBtn.addEventListener('click', async () => {
+    const key = $('#signkey').value.trim();
+    const r = await api('/signkey', { key });
+    if (!r.ok) {
+      toast(r.error || 'Không lưu được API key. Hãy kiểm tra lại key đã sao chép đúng chưa.', true);
+      return;
+    }
+    $('#signkey').value = '';
+    toast(r.set ? 'Đã lưu API key. Bấm “Thử lại” ở Bước 1 để kết nối.' : 'Đã xoá API key.');
+    refreshSignKey();
+  });
+  refreshSignKey();
+}
+// Pixel characters: switches apply on change, sliders apply live while dragging (debounced).
+$('#chars-enabled').addEventListener('change', (e) => setConfig({ characters: { enabled: e.target.checked } }));
+$('#chars-group').addEventListener('change', (e) => setConfig({ characters: { groupDance: e.target.checked } }));
+for (const [id, key] of [['chars-max', 'max'], ['chars-scale', 'scale']]) {
+  let timer;
+  $(`#${id}`).addEventListener('input', (e) => {
+    $(`#${id}-out`).textContent = e.target.value;
+    clearTimeout(timer);
+    timer = setTimeout(() => setConfig({ characters: { [key]: Number(e.target.value) } }), 150);
+  });
+}
+$('#chars-spawn').addEventListener('click', async () => {
+  const r = await api('/characters/spawn', { count: 3 });
+  if (r.ok) toast(`Đã thêm ${r.spawned.length} nhân vật: ${r.spawned.map((u) => u.name).join(', ')}`);
+  else toast(r.errorCode === 'server_unreachable' ? friendlyError('server_unreachable') : 'Chưa thêm được nhân vật. Hãy thử lại.', true);
+});
 $('#send-gift').addEventListener('click', async () => {
   const r = await api('/test-gift', { giftId: $('#gift').value });
   if (!r.ok) toast(friendlyError(r.errorCode), true);
