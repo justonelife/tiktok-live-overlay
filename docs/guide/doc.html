@@ -577,7 +577,7 @@ img.shot.wide { max-height: 78mm; width: 100%; }
     </tr>
     <tr>
       <td>Bấm lại vẫn y nguyên, lặp đi lặp lại</td>
-      <td>Cần nhập <b>API key miễn phí</b> — xem trang ngay sau. Không phải trả tiền.</td>
+      <td>Đây không phải lỗi của bạn: dịch vụ ký chặn ở gói miễn phí. Xem trang sau — có 3 lựa chọn, trong đó một cách <b>miễn phí 7 ngày</b> và một cách <b>miễn phí hoàn toàn</b>.</td>
     </tr>
   </table>
 
@@ -613,29 +613,48 @@ img.shot.wide { max-height: 78mm; width: 100%; }
 </div>
 
 <div class="page">
-  <h1>10 · Nhập API key miễn phí</h1>
-  <p class="lead">Chỉ làm một lần. Mất khoảng 2 phút. Không cần thẻ ngân hàng, không mất tiền.</p>
+  <h1>10 · API key Euler Stream (khi bị chặn)</h1>
+  <p class="lead">Đây là phần duy nhất trong tài liệu có thể khiến bạn mất tiền. Đọc kỹ trước khi làm.</p>
 
   <div class="box warn">
-    <span class="t">Chỉ làm khi được yêu cầu</span>
-    Nếu chương trình vẫn kết nối bình thường thì <b>bạn không cần phần này</b>. Chỉ làm khi gặp Lỗi A ở trang trước và bấm lại nhiều lần vẫn không hết.
+    <span class="t">Nói thẳng: gói miễn phí KHÔNG đủ</span>
+    Euler Stream cho đăng ký miễn phí và có API key miễn phí, nhưng key miễn phí <b>không mở được</b> thao tác
+    “tìm phòng live theo tên TikTok”. Thao tác đó chỉ có ở gói <b>Business</b> — $50/tháng, có <b>7 ngày miễn phí</b>.
+    Đã kiểm tra thực tế: key miễn phí trả về lỗi <code>402 — You cannot fetch using a unique_id without the Business plan</code>.
   </div>
 
-  <h3>Các bước lấy key</h3>
+  <h3>Ba lựa chọn, chọn một</h3>
+  <table>
+    <tr><th style="width:34%">Cách</th><th>Chi phí</th></tr>
+    <tr>
+      <td><b>① Dùng thử Business 7 ngày</b></td>
+      <td><b>0đ trong 7 ngày</b>, sau đó $50/tháng. Làm được ngay, không cần cài thêm. Nhớ huỷ trước khi hết 7 ngày nếu không muốn bị trừ tiền.</td>
+    </tr>
+    <tr>
+      <td><b>② Dùng công cụ khác miễn phí</b></td>
+      <td>0đ. Dùng TikFinity (miễn phí) làm nguồn sự kiện thay cho chương trình này. Nhược điểm: giao diện riêng của họ, không có nhân vật pixel của chúng ta.</td>
+    </tr>
+    <tr>
+      <td><b>③ Chờ TikTok đổi hệ thống</b></td>
+      <td>0đ. Không khuyến khích — không biết bao giờ.</td>
+    </tr>
+  </table>
+
+  <h3>Nếu chọn cách ① — các bước</h3>
   <ol class="steps">
-    <li>Mở trình duyệt, vào <b>eulerstream.com/register</b></li>
-    <li>Đăng ký bằng email hoặc Google. <b>Không cần nhập thẻ.</b></li>
-    <li>Vào mục <b>Dashboard</b> → tìm dòng <b>API Key</b> → bấm <b>Copy</b>.</li>
-    <li>Quay lại bảng điều khiển của chương trình → mở mục <b>Nâng cao</b> → dán vào ô <b>API key</b> → bấm <b>Lưu</b>.</li>
-    <li>Bấm <b>Kết nối</b> lại. Key được ghi nhớ cho những lần sau, không phải dán lại.</li>
+    <li>Mở <b>eulerstream.com</b> → đăng nhập tài khoản bạn đã tạo.</li>
+    <li>Vào <b>Pricing</b> → chọn gói <b>Business</b> → bấm dùng thử <b>7 ngày miễn phí</b> (cần nhập thẻ).</li>
+    <li>Vào <b>Dashboard</b> → mục <b>API Key</b> → <b>Copy</b>.</li>
+    <li>Mở bảng điều khiển chương trình → <b>Nâng cao</b> → dán vào ô <b>API key</b> → bấm <b>Lưu</b>.</li>
+    <li>Quay lại <b>Bước 1</b> → bấm <b>Kết nối</b>.</li>
   </ol>
 
   <table>
     <tr><th style="width:34%">Câu hỏi</th><th>Trả lời</th></tr>
-    <tr><td>Có mất tiền không?</td><td><b>Không.</b> Gói miễn phí cho 2.500 lượt mỗi ngày — một buổi live chỉ dùng vài chục lượt.</td></tr>
-    <tr><td>Key có nguy hiểm không?</td><td>Key là của riêng bạn, đừng đưa cho người khác. Nó không chứa mật khẩu TikTok và không đăng được bài.</td></tr>
-    <tr><td>Có phải làm lại mỗi buổi live?</td><td>Không. Nhập một lần là chương trình tự dùng về sau.</td></tr>
-    <tr><td>Dán key rồi vẫn lỗi?</td><td>Kiểm tra đã bấm <b>Lưu</b> chưa, và đã tắt chương trình rồi mở lại chưa. Sau đó xem lại Lỗi B ở trang trước.</td></tr>
+    <tr><td>Key có an toàn không?</td><td>Key lưu riêng trên máy bạn (file quyền 0600), không nằm trong cấu hình gửi ra OBS, không ai xem được qua trình duyệt.</td></tr>
+    <tr><td>Phải nhập lại mỗi buổi?</td><td>Không. Nhập một lần là dùng về sau.</td></tr>
+    <tr><td>Huỷ gói ở đâu?</td><td>eulerstream.com → phần tài khoản gói đăng ký → <b>Cancel Subscription</b>. Nên huỷ ngay sau khi đăng ký nếu chỉ định thử, gói vẫn dùng tới hết 7 ngày.</td></tr>
+    <tr><td>Đã có key miễn phí rồi?</td><td>Vẫn giữ được, nhưng phải <b>nâng cấp gói</b> thì chính key đó mới dùng được. Không cần tạo key mới.</td></tr>
   </table>
 </div>
 

@@ -291,7 +291,16 @@ Dependencies: `express`, `ws`, `tiktok-live-connector@2.5.0`. There are no frame
 
 ## Signature provider API key (Euler Stream)
 
-`tiktok-live-connector` cannot talk to TikTok directly: it asks a third-party signing service (Euler Stream) to sign each connection. Anonymous callers get a small free window; once it is used up the provider answers `This endpoint requires a Business plan` and the connect fails with `SignatureMissingTokensError` / `PremiumFeatureError`. **You do not have to pay** — a free account raises the limit to 2,500 requests/day, far more than a single stream needs.
+`tiktok-live-connector` cannot talk to TikTok directly: it asks a third-party signing service (Euler Stream) to sign each connection. **A free Euler key is not enough for this library.** Verified against the live API on 2026-11-03 with a free account key (plan limits: 1500 req/day, 25 websockets, `scopes: []`):
+
+| Route | Free "Community" key | Business ($50/mo, 7-day trial) |
+|---|---|---|
+| `/webcast/anchors/{unique_id}/connect` (look up a room by username) | **402** — "You cannot fetch using a unique_id without the Business plan" | ✅ |
+| `/tiktok/signing/encrypt/sign_url` (sign a TikTok URL) | **401** — "This endpoint requires a Business plan" | ✅ |
+| `/webcast/anchors/{id}/room_id`, gifts catalog | **401** | ✅ |
+| `/webcast/hashtags`, `/webcast/rooms/{room_id}/connect` (already-known room id) | ✅ 200 | ✅ |
+
+So the free key authenticates fine (`/accounts/self` returns the account) but every route this library needs is gated. Options: upgrade to Business (7-day free trial), or stop using this library and drive the overlay from another event source.
 
 - **In the panel:** *Nâng cao* → *API key* → paste → **Lưu**. The key is stored on disk and reused on every later launch.
 - **API:** `GET /api/signkey` → `{ set, hint }` (the key itself is never returned); `POST /api/signkey { key }` saves it, `{ key: "" }` deletes it.

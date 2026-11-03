@@ -9,7 +9,7 @@ export const ERROR_MESSAGES = Object.freeze({
   invalid_username: 'Tên TikTok chỉ gồm chữ cái không dấu, số, dấu chấm hoặc gạch dưới (2–24 ký tự).',
   rate_limited: 'TikTok đang tạm chặn vì kết nối quá nhiều lần. Đợi khoảng 1 phút rồi bấm “Thử lại”.',
   needs_sign_key:
-    'Dịch vụ kết nối đã hết lượt miễn phí. Đợi 1 phút rồi bấm “Thử lại”; nếu vẫn vậy, mở mục Nâng cao và nhập API key miễn phí.',
+    'Dịch vụ ký (Euler Stream) đang chặn ở gói miễn phí. Bấm “Thử lại” sau 1 phút; nếu vẫn vậy cần API key gói Business (có 7 ngày miễn phí) — xem mục Nâng cao.',
   timeout: 'TikTok phản hồi quá chậm. Hãy bấm “Thử lại”.',
   network: 'Không kết nối được tới TikTok. Hãy kiểm tra mạng Internet rồi bấm “Thử lại”.',
   lib_load: 'Thiếu thành phần kết nối TikTok. Hãy đóng cửa sổ đen rồi bấm đúp lại file BAT-DAU.',
